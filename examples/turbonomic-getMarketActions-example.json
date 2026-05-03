@@ -1,0 +1,57 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://turbonomic.example.com/api/v3/markets/Market/actions?ascending=false",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxNDc0OTYwMH0.abc123",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "uuid": "action_uuid_001",
+        "actionType": "RESIZE",
+        "actionMode": "RECOMMEND",
+        "details": "Resize VirtualMachine 'web-server-01' VCPU from 4 to 2",
+        "importance": 87.5,
+        "severity": "MAJOR",
+        "state": "READY",
+        "createTime": "2026-05-03T10:00:00Z",
+        "target": {
+          "uuid": "vm_uuid_001",
+          "displayName": "web-server-01",
+          "className": "VirtualMachine"
+        },
+        "risk": {
+          "reasonCommodity": "VCPU",
+          "subType": "PERFORMANCE"
+        }
+      },
+      {
+        "uuid": "action_uuid_002",
+        "actionType": "MOVE",
+        "actionMode": "MANUAL",
+        "details": "Move VirtualMachine 'db-server-01' to host 'esxi-host-03'",
+        "importance": 62.3,
+        "severity": "MINOR",
+        "state": "READY",
+        "createTime": "2026-05-03T09:30:00Z",
+        "target": {
+          "uuid": "vm_uuid_002",
+          "displayName": "db-server-01",
+          "className": "VirtualMachine"
+        },
+        "newEntity": {
+          "uuid": "host_uuid_003",
+          "displayName": "esxi-host-03",
+          "className": "PhysicalMachine"
+        }
+      }
+    ]
+  }
+}

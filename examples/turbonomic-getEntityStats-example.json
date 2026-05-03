@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://turbonomic.example.com/api/v3/entities/vm_uuid_001/stats?start_date=2026-04-01T00:00:00Z&end_date=2026-05-01T00:00:00Z",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxNDc0OTYwMH0.abc123"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "date": "2026-05-01T00:00:00Z",
+        "statistics": [
+          {
+            "name": "CPU",
+            "value": 23.4,
+            "units": "MHz"
+          },
+          {
+            "name": "Mem",
+            "value": 4096.0,
+            "units": "MB"
+          },
+          {
+            "name": "StorageAmount",
+            "value": 51200.0,
+            "units": "MB"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Turbonomic Action Structure",
+  "description": "JSON structure documentation for a Turbonomic optimization action",
+  "structure": {
+    "uuid": "string",
+    "actionType": "string (enum: RESIZE, MOVE, PROVISION, SUSPEND, DELETE, ACTIVATE, SCALE)",
+    "actionMode": "string (enum: MANUAL, AUTOMATIC, RECOMMEND, DISABLED)",
+    "details": "string",
+    "importance": "number (0-100)",
+    "severity": "string (enum: CRITICAL, MAJOR, MINOR)",
+    "state": "string (enum: READY, IN_PROGRESS, SUCCEEDED, FAILED, CLEARED, QUEUED, ACCEPTED)",
+    "createTime": "string (date-time)",
+    "updateTime": "string (date-time)",
+    "target": {
+      "uuid": "string",
+      "displayName": "string",
+      "className": "string"
+    },
+    "currentEntity": {
+      "uuid": "string",
+      "displayName": "string",
+      "className": "string"
+    },
+    "newEntity": {
+      "uuid": "string",
+      "displayName": "string",
+      "className": "string"
+    },
+    "risk": {
+      "reasonCommodity": "string",
+      "subType": "string",
+      "description": "string"
+    },
+    "savings": {
+      "amount": "number",
+      "currency": "string"
+    }
+  }
+}

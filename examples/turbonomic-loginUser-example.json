@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://turbonomic.example.com/api/v3/login",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "username": "admin",
+      "password": "your_password"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxNDc0OTYwMH0.abc123",
+      "username": "admin",
+      "uuid": "_YourUserUUID_123",
+      "roles": ["ADMINISTRATOR"]
+    }
+  }
+}

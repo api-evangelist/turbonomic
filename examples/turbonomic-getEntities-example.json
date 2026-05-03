@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://turbonomic.example.com/api/v3/entities?entity_type=VirtualMachine&limit=10",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxNDc0OTYwMH0.abc123"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "uuid": "vm_uuid_001",
+        "displayName": "web-server-01",
+        "className": "VirtualMachine",
+        "environmentType": "ON_PREM",
+        "state": "ACTIVE",
+        "tags": {
+          "environment": ["production"],
+          "team": ["platform"]
+        }
+      },
+      {
+        "uuid": "vm_uuid_002",
+        "displayName": "db-server-01",
+        "className": "VirtualMachine",
+        "environmentType": "CLOUD",
+        "state": "ACTIVE",
+        "tags": {
+          "environment": ["production"],
+          "team": ["data"]
+        }
+      }
+    ]
+  }
+}

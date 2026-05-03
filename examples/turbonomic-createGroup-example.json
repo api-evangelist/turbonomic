@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://turbonomic.example.com/api/v3/groups",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxNDc0OTYwMH0.abc123",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "displayName": "Production VMs",
+      "groupType": "VirtualMachine",
+      "isStatic": false,
+      "criteriaList": [
+        {
+          "filterType": "vmsByTag",
+          "expType": "EQ",
+          "expVal": "environment:production",
+          "caseSensitive": false
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "uuid": "group_uuid_001",
+      "displayName": "Production VMs",
+      "groupType": "VirtualMachine",
+      "isStatic": false,
+      "memberCount": 145
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.ibm.com/docs/en/tarm/schemas/entity.json",
+  "title": "Turbonomic Entity",
+  "description": "Schema for a managed entity in the IBM Turbonomic Application Resource Management platform. Entities represent managed infrastructure components including virtual machines, containers, applications, storage, physical hosts, and cloud resources.",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "description": "Unique identifier of the entity within Turbonomic"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable name of the entity"
+    },
+    "className": {
+      "type": "string",
+      "description": "Entity type classification",
+      "enum": [
+        "VirtualMachine",
+        "PhysicalMachine",
+        "Container",
+        "ContainerPod",
+        "Application",
+        "ApplicationComponent",
+        "BusinessApplication",
+        "Storage",
+        "StorageController",
+        "DiskArray",
+        "VirtualDataCenter",
+        "DataCenter",
+        "Cluster",
+        "Network",
+        "VirtualNetwork",
+        "DatabaseServer",
+        "Database",
+        "LoadBalancer",
+        "ServiceNamespace",
+        "Workload",
+        "ComputeTier",
+        "StorageTier",
+        "IOModule"
+      ]
+    },
+    "environmentType": {
+      "type": "string",
+      "description": "The type of environment this entity belongs to",
+      "enum": ["CLOUD", "ON_PREM", "HYBRID"]
+    },
+    "state": {
+      "type": "string",
+      "description": "Current operational state of the entity",
+      "enum": ["ACTIVE", "IDLE", "SUSPENDED", "MAINTENANCE", "FAILOVER", "UNKNOWN"]
+    },
+    "severityBreakdown": {
+      "type": "object",
+      "description": "Summary of action severities affecting this entity",
+      "properties": {
+        "critical": {
+          "type": "integer",
+          "description": "Number of critical severity actions"
+        },
+        "major": {
+          "type": "integer",
+          "description": "Number of major severity actions"
+        },
+        "minor": {
+          "type": "integer",
+          "description": "Number of minor severity actions"
+        }
+      }
+    },
+    "tags": {
+      "type": "object",
+      "description": "Key-value tags associated with this entity",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "discoveredBy": {
+      "type": "object",
+      "description": "Discovery target that found this entity",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "providers": {
+      "type": "array",
+      "description": "Supply chain providers this entity depends on",
+      "items": {
+        "$ref": "#/$defs/EntityRef"
+      }
+    },
+    "consumers": {
+      "type": "array",
+      "description": "Supply chain consumers that depend on this entity",
+      "items": {
+        "$ref": "#/$defs/EntityRef"
+      }
+    }
+  },
+  "$defs": {
+    "EntityRef": {
+      "type": "object",
+      "description": "A reference to another entity in the supply chain",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "description": "Entity UUID"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Entity display name"
+        },
+        "className": {
+          "type": "string",
+          "description": "Entity type"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "uuid": "vm_uuid_001",
+      "displayName": "web-server-01",
+      "className": "VirtualMachine",
+      "environmentType": "ON_PREM",
+      "state": "ACTIVE",
+      "tags": {
+        "environment": ["production"],
+        "team": ["platform"]
+      },
+      "severityBreakdown": {
+        "critical": 0,
+        "major": 1,
+        "minor": 2
+      }
+    }
+  ]
+}

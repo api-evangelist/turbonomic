@@ -1,0 +1,38 @@
+{
+  "title": "Turbonomic Entity Structure",
+  "description": "JSON structure documentation for a Turbonomic managed entity, showing field hierarchy and types",
+  "structure": {
+    "uuid": "string",
+    "displayName": "string",
+    "className": "string (enum: VirtualMachine, PhysicalMachine, Container, Application, ...)",
+    "environmentType": "string (enum: CLOUD, ON_PREM, HYBRID)",
+    "state": "string (enum: ACTIVE, IDLE, SUSPENDED, MAINTENANCE, FAILOVER, UNKNOWN)",
+    "severityBreakdown": {
+      "critical": "integer",
+      "major": "integer",
+      "minor": "integer"
+    },
+    "tags": {
+      "<key>": ["string"]
+    },
+    "discoveredBy": {
+      "uuid": "string",
+      "displayName": "string",
+      "type": "string"
+    },
+    "providers": [
+      {
+        "uuid": "string",
+        "displayName": "string",
+        "className": "string"
+      }
+    ],
+    "consumers": [
+      {
+        "uuid": "string",
+        "displayName": "string",
+        "className": "string"
+      }
+    ]
+  }
+}

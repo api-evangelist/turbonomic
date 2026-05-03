@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.ibm.com/docs/en/tarm/schemas/action.json",
+  "title": "Turbonomic Action",
+  "description": "Schema for an AI-recommended optimization action in IBM Turbonomic. Actions represent specific changes Turbonomic recommends to improve application performance, reduce costs, or prevent resource contention.",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "description": "Unique identifier of the action"
+    },
+    "actionType": {
+      "type": "string",
+      "description": "The type of change this action will execute",
+      "enum": [
+        "RESIZE",
+        "MOVE",
+        "PROVISION",
+        "SUSPEND",
+        "DELETE",
+        "ACTIVATE",
+        "RESIZE_FOR_EFFICIENCY",
+        "RESIZE_FOR_PERFORMANCE",
+        "START",
+        "STOP",
+        "SCALE",
+        "RECONFIGURE"
+      ]
+    },
+    "actionMode": {
+      "type": "string",
+      "description": "The execution mode for this action",
+      "enum": ["MANUAL", "AUTOMATIC", "RECOMMEND", "DISABLED"]
+    },
+    "details": {
+      "type": "string",
+      "description": "Human-readable description of what this action will do"
+    },
+    "importance": {
+      "type": "number",
+      "description": "Numerical importance score for prioritizing actions (higher = more important)",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "severity": {
+      "type": "string",
+      "description": "Severity classification of the action",
+      "enum": ["CRITICAL", "MAJOR", "MINOR"]
+    },
+    "state": {
+      "type": "string",
+      "description": "Current lifecycle state of the action",
+      "enum": ["READY", "IN_PROGRESS", "SUCCEEDED", "FAILED", "CLEARED", "QUEUED", "ACCEPTED"]
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when Turbonomic first generated this action"
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last state change"
+    },
+    "target": {
+      "type": "object",
+      "description": "The primary entity this action applies to",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "className": {
+          "type": "string"
+        }
+      }
+    },
+    "currentEntity": {
+      "type": "object",
+      "description": "For MOVE actions, the current provider entity",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "className": {
+          "type": "string"
+        }
+      }
+    },
+    "newEntity": {
+      "type": "object",
+      "description": "For MOVE actions, the recommended new provider entity",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "className": {
+          "type": "string"
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "description": "Risk assessment information for this action",
+      "properties": {
+        "reasonCommodity": {
+          "type": "string",
+          "description": "The resource commodity driving this action (e.g., VCPU, VMem, StorageAmount)"
+        },
+        "subType": {
+          "type": "string",
+          "description": "Risk sub-type (PERFORMANCE, EFFICIENCY, COMPLIANCE)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed risk description"
+        }
+      }
+    },
+    "savings": {
+      "type": "object",
+      "description": "Estimated cost savings from executing this action",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "description": "Estimated monthly savings amount"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code (e.g., USD)"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "uuid": "action_uuid_001",
+      "actionType": "RESIZE",
+      "actionMode": "RECOMMEND",
+      "details": "Resize VirtualMachine 'web-server-01' VCPU from 4 to 2",
+      "importance": 87.5,
+      "severity": "MAJOR",
+      "state": "READY",
+      "createTime": "2026-05-03T10:00:00Z",
+      "target": {
+        "uuid": "vm_uuid_001",
+        "displayName": "web-server-01",
+        "className": "VirtualMachine"
+      },
+      "risk": {
+        "reasonCommodity": "VCPU",
+        "subType": "EFFICIENCY",
+        "description": "VirtualMachine is consistently underutilizing allocated vCPU resources"
+      },
+      "savings": {
+        "amount": 45.60,
+        "currency": "USD"
+      }
+    }
+  ]
+}

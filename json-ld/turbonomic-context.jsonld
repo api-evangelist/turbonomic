@@ -1,0 +1,108 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "turbo": "https://www.ibm.com/products/turbonomic/vocabulary#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Entity": {
+      "@id": "turbo:Entity",
+      "@context": {
+        "uuid": "turbo:entityId",
+        "displayName": "schema:name",
+        "className": "turbo:entityType",
+        "environmentType": "turbo:environmentType",
+        "state": "turbo:operationalState",
+        "tags": "schema:additionalProperty",
+        "severityBreakdown": "turbo:severityBreakdown",
+        "providers": {
+          "@id": "turbo:hasProvider",
+          "@container": "@set"
+        },
+        "consumers": {
+          "@id": "turbo:hasConsumer",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Action": {
+      "@id": "turbo:Action",
+      "@context": {
+        "uuid": "turbo:actionId",
+        "actionType": "turbo:actionType",
+        "actionMode": "turbo:executionMode",
+        "details": "schema:description",
+        "importance": "turbo:importanceScore",
+        "severity": "turbo:severityLevel",
+        "state": "turbo:actionState",
+        "createTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "target": "turbo:targetEntity",
+        "currentEntity": "turbo:currentProvider",
+        "newEntity": "turbo:recommendedProvider",
+        "risk": "turbo:riskAssessment",
+        "savings": "turbo:estimatedSavings"
+      }
+    },
+
+    "Market": {
+      "@id": "turbo:Market",
+      "@context": {
+        "uuid": "turbo:marketId",
+        "displayName": "schema:name",
+        "state": "turbo:marketState",
+        "type": "turbo:marketType"
+      }
+    },
+
+    "Group": {
+      "@id": "turbo:Group",
+      "@context": {
+        "uuid": "turbo:groupId",
+        "displayName": "schema:name",
+        "groupType": "turbo:groupEntityType",
+        "isStatic": "turbo:isStaticGroup",
+        "memberCount": "turbo:memberCount"
+      }
+    },
+
+    "Policy": {
+      "@id": "turbo:Policy",
+      "@context": {
+        "uuid": "turbo:policyId",
+        "displayName": "schema:name",
+        "policyType": "turbo:policyType",
+        "enabled": "turbo:isEnabled"
+      }
+    },
+
+    "Target": {
+      "@id": "turbo:Target",
+      "@context": {
+        "uuid": "turbo:targetId",
+        "displayName": "schema:name",
+        "type": "turbo:targetType",
+        "status": "turbo:validationStatus",
+        "lastValidated": {
+          "@id": "turbo:lastValidated",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "StatSnapshot": {
+      "@id": "turbo:StatSnapshot",
+      "@context": {
+        "date": {
+          "@id": "dcterms:date",
+          "@type": "xsd:dateTime"
+        },
+        "statistics": "turbo:metrics"
+      }
+    }
+  }
+}

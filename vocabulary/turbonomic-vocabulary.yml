@@ -1,0 +1,181 @@
+vocabulary:
+  name: IBM Turbonomic Vocabulary
+  description: >-
+    Domain vocabulary for IBM Turbonomic Application Resource Management (ARM) platform.
+    Covers resource optimization, action management, entity modeling, and cloud cost concepts.
+  version: "1.0"
+  created: "2026-05-03"
+  modified: "2026-05-03"
+  provider: IBM Turbonomic
+
+terms:
+  - term: Action
+    definition: >-
+      An AI-recommended change that Turbonomic suggests to optimize resource utilization,
+      reduce costs, or prevent performance degradation. Actions have types (RESIZE, MOVE,
+      PROVISION, SUSPEND, DELETE), modes (MANUAL, AUTOMATIC, RECOMMEND), and severity levels.
+    category: Core Concept
+    tags:
+      - Automation
+      - Optimization
+
+  - term: Action Mode
+    definition: >-
+      Controls whether Turbonomic executes an action automatically or requires manual approval.
+      MANUAL requires user approval, AUTOMATIC executes without intervention, RECOMMEND only
+      suggests the action, DISABLED prevents the action from being generated.
+    category: Action Management
+    tags:
+      - Automation
+      - Governance
+
+  - term: Application Resource Management (ARM)
+    definition: >-
+      IBM Turbonomic's AI-powered approach to continuously analyzing application resource
+      needs and automating actions to ensure performance while minimizing costs across
+      hybrid cloud environments.
+    category: Platform Concept
+    tags:
+      - Cloud
+      - Optimization
+
+  - term: Entity
+    definition: >-
+      Any managed infrastructure component in Turbonomic, including virtual machines,
+      containers, applications, storage, physical hosts, databases, networks, and cloud
+      services. Each entity has a className, UUID, state, and supply chain relationships.
+    category: Core Concept
+    tags:
+      - Infrastructure
+      - Modeling
+
+  - term: Entity Type (className)
+    definition: >-
+      The classification of a Turbonomic entity. Common types include VirtualMachine,
+      PhysicalMachine, Container, ContainerPod, Application, ApplicationComponent,
+      Storage, DatabaseServer, and cloud-specific types like ComputeTier and StorageTier.
+    category: Entity Modeling
+    tags:
+      - Classification
+      - Modeling
+
+  - term: Environment Type
+    definition: >-
+      Indicates whether an entity resides in CLOUD (public cloud), ON_PREM (private
+      datacenter), or HYBRID environments. Used to scope optimization recommendations
+      and reporting.
+    category: Entity Modeling
+    tags:
+      - Cloud
+      - Infrastructure
+
+  - term: Group
+    definition: >-
+      A logical collection of entities used to scope policies, reporting, and automation
+      workflows. Groups can be static (fixed membership list) or dynamic (criteria-based
+      membership that updates automatically as entities are discovered).
+    category: Organization
+    tags:
+      - Policy
+      - Scoping
+
+  - term: Importance Score
+    definition: >-
+      A numerical score (0-100) Turbonomic assigns to actions to help prioritize which
+      optimizations deliver the greatest benefit. Higher scores indicate higher priority.
+    category: Action Management
+    tags:
+      - Prioritization
+      - Scoring
+
+  - term: Market
+    definition: >-
+      A Turbonomic simulation environment representing either the real-time state of the
+      environment (the "Market" market) or a planning scenario. Markets contain all pending
+      actions and projected states for capacity planning.
+    category: Core Concept
+    tags:
+      - Capacity Planning
+      - Simulation
+
+  - term: Policy
+    definition: >-
+      A rule set that governs how Turbonomic generates and executes optimization actions
+      for specific entity types or groups. Policies control action modes, constraints,
+      and automation schedules.
+    category: Governance
+    tags:
+      - Automation
+      - Control
+
+  - term: Resize Action
+    definition: >-
+      An action that changes the allocated resources (CPU, memory, storage) for an entity.
+      Turbonomic recommends downsizing over-provisioned entities (efficiency) and upsizing
+      under-provisioned entities (performance) based on workload analytics.
+    category: Action Types
+    tags:
+      - Cost Optimization
+      - Performance
+
+  - term: Right-Sizing
+    definition: >-
+      The process of aligning resource allocations with actual workload demand. Turbonomic
+      continuously analyzes utilization patterns and recommends resize actions to eliminate
+      waste and prevent performance issues.
+    category: Optimization
+    tags:
+      - Cost Optimization
+      - Efficiency
+
+  - term: Supply Chain
+    definition: >-
+      The hierarchical relationship model in Turbonomic showing how entities depend on
+      each other. For example, an Application depends on a VirtualMachine, which depends
+      on a PhysicalMachine. Turbonomic analyzes the full supply chain to make optimization
+      decisions.
+    category: Core Concept
+    tags:
+      - Dependency
+      - Modeling
+
+  - term: Target
+    definition: >-
+      A connected infrastructure system from which Turbonomic discovers and monitors
+      entities. Targets include cloud accounts (AWS, Azure, GCP), hypervisors (vCenter,
+      Hyper-V), container platforms (Kubernetes), APM tools, and databases.
+    category: Integration
+    tags:
+      - Discovery
+      - Integration
+
+  - term: Template
+    definition: >-
+      A predefined resource specification used for workload placement and hardware refresh
+      planning. Templates describe entity configurations (CPU, memory, storage) and are
+      used in plan markets to model future states.
+    category: Capacity Planning
+    tags:
+      - Planning
+      - Provisioning
+
+  - term: UUID
+    definition: >-
+      The unique identifier used to reference entities, actions, groups, policies, and
+      other objects in the Turbonomic REST API. UUIDs are stable identifiers that persist
+      across restarts and can be used for automation workflows.
+    category: Technical Concept
+    tags:
+      - API
+      - Identity
+
+  - term: Workload Optimization
+    definition: >-
+      The continuous process of matching application resource demand with supply across
+      hybrid cloud environments. Turbonomic's AI engine performs workload optimization
+      by analyzing the full application-to-infrastructure stack.
+    category: Platform Concept
+    tags:
+      - AI
+      - Cloud
+      - Optimization

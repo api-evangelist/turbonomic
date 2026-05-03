@@ -1,0 +1,126 @@
+extends: spectral:oas
+rules:
+  # Turbonomic API Convention: All paths use /api/v3 prefix (enforced at server level)
+  turbonomic-operation-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' should use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]*$"
+
+  turbonomic-operation-id-required:
+    description: All operations must have an operationId
+    message: "Operation must have an operationId for Turbonomic SDK generation"
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: operationId
+      function: truthy
+
+  turbonomic-uuid-path-parameter:
+    description: >-
+      Turbonomic uses 'uuid' as the identifier parameter name for all entity paths.
+      Path parameters referencing entity identifiers should be named 'uuid'.
+    message: "Path parameter for entity identifier should be named 'uuid'"
+    severity: warn
+    given: "$.paths[*][*].parameters[?(@.in == 'path')]"
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "^(uuid|ticketId|taskId|deviceId|ruleId|userId|groupId|policyId|templateId|marketId)$"
+
+  turbonomic-bearer-auth-required:
+    description: >-
+      All Turbonomic endpoints (except /login and /logout) must require bearer token authentication.
+    message: "Non-authentication endpoints must declare bearerAuth security requirement"
+    severity: warn
+    given: "$.paths[?(!@property.match('/(login|logout)'))][get,post,put,delete,patch]"
+    then:
+      field: security
+      function: truthy
+
+  turbonomic-200-response-defined:
+    description: All operations should define a 200 success response
+    message: "Operation should define a 200 success response"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch].responses"
+    then:
+      field: "200"
+      function: truthy
+
+  turbonomic-response-schema-defined:
+    description: Success responses should define a response schema
+    message: "200 response should include a content schema"
+    severity: info
+    given: "$.paths[*][get,post,put].responses.200"
+    then:
+      field: content
+      function: truthy
+
+  turbonomic-tag-required:
+    description: All operations must be tagged for Swagger UI grouping
+    message: "Operation must have at least one tag"
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy
+
+  turbonomic-description-required:
+    description: All operations should have a description for documentation completeness
+    message: "Operation should include a description"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: description
+      function: truthy
+
+  turbonomic-parameter-description:
+    description: All parameters should have a description
+    message: "Parameter '{{value}}' should have a description"
+    severity: warn
+    given: "$.paths[*][*].parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  turbonomic-no-generic-error:
+    description: Operations should define specific error responses (401, 404) not just generic errors
+    message: "Operation should define specific error responses"
+    severity: info
+    given: "$.paths[*][get,post,put,delete,patch].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["401"]
+            - required: ["404"]
+            - required: ["400"]
+
+  turbonomic-components-schemas-defined:
+    description: API must define reusable schemas in components/schemas
+    message: "API should define schemas in components/schemas"
+    severity: warn
+    given: "$.components"
+    then:
+      field: schemas
+      function: truthy
+
+  turbonomic-action-uuid-in-path:
+    description: >-
+      Turbonomic action and entity endpoints use UUID as path parameter.
+      Ensure UUID parameters use the correct format.
+    message: "UUID path parameters should document string type"
+    severity: info
+    given: "$.paths[*][*].parameters[?(@.name == 'uuid')]"
+    then:
+      field: schema.type
+      function: enumeration
+      functionOptions:
+        values:
+          - string
