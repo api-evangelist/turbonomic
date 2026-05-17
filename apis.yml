@@ -148,7 +148,7 @@ common:
     url: https://try.turbonomic.io/apidoc/
   - type: GettingStarted
     url: https://www.ibm.com/docs/en/tarm/8.13.0?topic=reference-getting-started-turbonomic-rest-api
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/turbonomic
   - type: Blog
     url: https://www.ibm.com/blog/turbonomic/
@@ -160,9 +160,9 @@ common:
     url: https://www.ibm.com/mysupport/s/topic/0TO0z000000ZnCCGA0/turbonomic-application-resource-management
   - type: Community
     url: https://developer.ibm.com/components/turbonomic/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.ibm.com/terms
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.ibm.com/privacy
   - type: OpenAPI
     url: openapi/turbonomic-rest-api-openapi.yml
@@ -170,7 +170,7 @@ common:
     url: crd/charts.helm.k8s.io_xls.yaml
   - type: Vocabulary
     url: vocabulary/turbonomic-vocabulary.yml
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/turbonomic-context.jsonld
   - type: JSONSchema
     url: json-schema/turbonomic-entity-schema.json
