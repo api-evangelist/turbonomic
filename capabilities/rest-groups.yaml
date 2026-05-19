@@ -1,0 +1,233 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Turbonomic REST API — Groups
+  description: 'Turbonomic REST API — Groups. 5 operations. Lead operation: Get All Groups. Self-contained Naftiko capability
+    covering one Turbonomic business surface.'
+  tags:
+  - Turbonomic
+  - Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TURBONOMIC_API_KEY: TURBONOMIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-groups
+    baseUri: https://{turbonomic_host}/api/v3
+    description: Turbonomic REST API — Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: groups
+      path: /groups
+      operations:
+      - name: getgroups
+        method: GET
+        description: Get All Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: group_type
+          in: query
+          type: string
+          description: Filter by group type
+      - name: creategroup
+        method: POST
+        description: Create Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: groups-uuid
+      path: /groups/{uuid}
+      operations:
+      - name: getgroupbyuuid
+        method: GET
+        description: Get Group By UUID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The unique identifier of the group
+          required: true
+      - name: updategroup
+        method: PUT
+        description: Update Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The unique identifier of the group
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletegroup
+        method: DELETE
+        description: Delete Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The unique identifier of the group
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TURBONOMIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-groups-rest
+    port: 8080
+    description: REST adapter for Turbonomic REST API — Groups. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/groups
+      name: groups
+      description: REST surface for groups.
+      operations:
+      - method: GET
+        name: getgroups
+        description: Get All Groups
+        call: rest-groups.getgroups
+        with:
+          group_type: rest.group_type
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: creategroup
+        description: Create Group
+        call: rest-groups.creategroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/groups/{uuid}
+      name: groups-uuid
+      description: REST surface for groups-uuid.
+      operations:
+      - method: GET
+        name: getgroupbyuuid
+        description: Get Group By UUID
+        call: rest-groups.getgroupbyuuid
+        with:
+          uuid: rest.uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updategroup
+        description: Update Group
+        call: rest-groups.updategroup
+        with:
+          uuid: rest.uuid
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletegroup
+        description: Delete Group
+        call: rest-groups.deletegroup
+        with:
+          uuid: rest.uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Turbonomic REST API — Groups. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-all-groups
+      description: Get All Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-groups.getgroups
+      with:
+        group_type: tools.group_type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-group
+      description: Create Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-groups.creategroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-group-uuid
+      description: Get Group By UUID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-groups.getgroupbyuuid
+      with:
+        uuid: tools.uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-group
+      description: Update Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-groups.updategroup
+      with:
+        uuid: tools.uuid
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-group
+      description: Delete Group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-groups.deletegroup
+      with:
+        uuid: tools.uuid
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,176 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Turbonomic REST API — Actions
+  description: 'Turbonomic REST API — Actions. 3 operations. Lead operation: Get Action By UUID. Self-contained Naftiko capability
+    covering one Turbonomic business surface.'
+  tags:
+  - Turbonomic
+  - Actions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TURBONOMIC_API_KEY: TURBONOMIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-actions
+    baseUri: https://{turbonomic_host}/api/v3
+    description: Turbonomic REST API — Actions business capability. Self-contained, no shared references.
+    resources:
+    - name: actions-uuid
+      path: /actions/{uuid}
+      operations:
+      - name: getactionbyuuid
+        method: GET
+        description: Get Action By UUID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The unique identifier of the action
+          required: true
+        - name: accept
+          in: query
+          type: boolean
+          description: If true, execute (accept) this action
+    - name: entities-uuid-actions
+      path: /entities/{uuid}/actions
+      operations:
+      - name: getentityactions
+        method: GET
+        description: Get Entity Actions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The unique identifier of the entity
+          required: true
+    - name: markets-uuid-actions
+      path: /markets/{uuid}/actions
+      operations:
+      - name: getmarketactions
+        method: GET
+        description: Get Market Actions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: Market UUID (use 'Market' for the realtime market)
+          required: true
+        - name: ascending
+          in: query
+          type: boolean
+          description: Sort order for results
+    authentication:
+      type: bearer
+      token: '{{env.TURBONOMIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-actions-rest
+    port: 8080
+    description: REST adapter for Turbonomic REST API — Actions. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/actions/{uuid}
+      name: actions-uuid
+      description: REST surface for actions-uuid.
+      operations:
+      - method: GET
+        name: getactionbyuuid
+        description: Get Action By UUID
+        call: rest-actions.getactionbyuuid
+        with:
+          uuid: rest.uuid
+          accept: rest.accept
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/entities/{uuid}/actions
+      name: entities-uuid-actions
+      description: REST surface for entities-uuid-actions.
+      operations:
+      - method: GET
+        name: getentityactions
+        description: Get Entity Actions
+        call: rest-actions.getentityactions
+        with:
+          uuid: rest.uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/markets/{uuid}/actions
+      name: markets-uuid-actions
+      description: REST surface for markets-uuid-actions.
+      operations:
+      - method: GET
+        name: getmarketactions
+        description: Get Market Actions
+        call: rest-actions.getmarketactions
+        with:
+          uuid: rest.uuid
+          ascending: rest.ascending
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-actions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Turbonomic REST API — Actions. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-action-uuid
+      description: Get Action By UUID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-actions.getactionbyuuid
+      with:
+        uuid: tools.uuid
+        accept: tools.accept
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-entity-actions
+      description: Get Entity Actions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-actions.getentityactions
+      with:
+        uuid: tools.uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-market-actions
+      description: Get Market Actions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-actions.getmarketactions
+      with:
+        uuid: tools.uuid
+        ascending: tools.ascending
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,182 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Turbonomic REST API — Templates
+  description: 'Turbonomic REST API — Templates. 4 operations. Lead operation: Get All Templates. Self-contained Naftiko capability
+    covering one Turbonomic business surface.'
+  tags:
+  - Turbonomic
+  - Templates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TURBONOMIC_API_KEY: TURBONOMIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-templates
+    baseUri: https://{turbonomic_host}/api/v3
+    description: Turbonomic REST API — Templates business capability. Self-contained, no shared references.
+    resources:
+    - name: templates
+      path: /templates
+      operations:
+      - name: gettemplates
+        method: GET
+        description: Get All Templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createtemplate
+        method: POST
+        description: Create Template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: templates-uuid
+      path: /templates/{uuid}
+      operations:
+      - name: gettemplatebyuuid
+        method: GET
+        description: Get Template By UUID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The unique identifier of the template
+          required: true
+      - name: deletetemplate
+        method: DELETE
+        description: Delete Template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The unique identifier of the template
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TURBONOMIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-templates-rest
+    port: 8080
+    description: REST adapter for Turbonomic REST API — Templates. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/templates
+      name: templates
+      description: REST surface for templates.
+      operations:
+      - method: GET
+        name: gettemplates
+        description: Get All Templates
+        call: rest-templates.gettemplates
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtemplate
+        description: Create Template
+        call: rest-templates.createtemplate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/templates/{uuid}
+      name: templates-uuid
+      description: REST surface for templates-uuid.
+      operations:
+      - method: GET
+        name: gettemplatebyuuid
+        description: Get Template By UUID
+        call: rest-templates.gettemplatebyuuid
+        with:
+          uuid: rest.uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetemplate
+        description: Delete Template
+        call: rest-templates.deletetemplate
+        with:
+          uuid: rest.uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-templates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Turbonomic REST API — Templates. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-all-templates
+      description: Get All Templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-templates.gettemplates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-template
+      description: Create Template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-templates.createtemplate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-template-uuid
+      description: Get Template By UUID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-templates.gettemplatebyuuid
+      with:
+        uuid: tools.uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-template
+      description: Delete Template
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-templates.deletetemplate
+      with:
+        uuid: tools.uuid
+      outputParameters:
+      - type: object
+        mapping: $.

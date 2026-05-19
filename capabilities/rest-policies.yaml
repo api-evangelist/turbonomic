@@ -1,0 +1,224 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Turbonomic REST API — Policies
+  description: 'Turbonomic REST API — Policies. 5 operations. Lead operation: Get All Policies. Self-contained Naftiko capability
+    covering one Turbonomic business surface.'
+  tags:
+  - Turbonomic
+  - Policies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TURBONOMIC_API_KEY: TURBONOMIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-policies
+    baseUri: https://{turbonomic_host}/api/v3
+    description: Turbonomic REST API — Policies business capability. Self-contained, no shared references.
+    resources:
+    - name: policies
+      path: /policies
+      operations:
+      - name: getpolicies
+        method: GET
+        description: Get All Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpolicy
+        method: POST
+        description: Create Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: policies-uuid
+      path: /policies/{uuid}
+      operations:
+      - name: getpolicybyuuid
+        method: GET
+        description: Get Policy By UUID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The unique identifier of the policy
+          required: true
+      - name: updatepolicy
+        method: PUT
+        description: Update Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The unique identifier of the policy
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletepolicy
+        method: DELETE
+        description: Delete Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: The unique identifier of the policy
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TURBONOMIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-policies-rest
+    port: 8080
+    description: REST adapter for Turbonomic REST API — Policies. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/policies
+      name: policies
+      description: REST surface for policies.
+      operations:
+      - method: GET
+        name: getpolicies
+        description: Get All Policies
+        call: rest-policies.getpolicies
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpolicy
+        description: Create Policy
+        call: rest-policies.createpolicy
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/policies/{uuid}
+      name: policies-uuid
+      description: REST surface for policies-uuid.
+      operations:
+      - method: GET
+        name: getpolicybyuuid
+        description: Get Policy By UUID
+        call: rest-policies.getpolicybyuuid
+        with:
+          uuid: rest.uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatepolicy
+        description: Update Policy
+        call: rest-policies.updatepolicy
+        with:
+          uuid: rest.uuid
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepolicy
+        description: Delete Policy
+        call: rest-policies.deletepolicy
+        with:
+          uuid: rest.uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-policies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Turbonomic REST API — Policies. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-all-policies
+      description: Get All Policies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-policies.getpolicies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-policy
+      description: Create Policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-policies.createpolicy
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-policy-uuid
+      description: Get Policy By UUID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-policies.getpolicybyuuid
+      with:
+        uuid: tools.uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-policy
+      description: Update Policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-policies.updatepolicy
+      with:
+        uuid: tools.uuid
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-policy
+      description: Delete Policy
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-policies.deletepolicy
+      with:
+        uuid: tools.uuid
+      outputParameters:
+      - type: object
+        mapping: $.

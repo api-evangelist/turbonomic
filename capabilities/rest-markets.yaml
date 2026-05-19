@@ -1,0 +1,167 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Turbonomic REST API — Markets
+  description: 'Turbonomic REST API — Markets. 3 operations. Lead operation: Get All Markets. Self-contained Naftiko capability
+    covering one Turbonomic business surface.'
+  tags:
+  - Turbonomic
+  - Markets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TURBONOMIC_API_KEY: TURBONOMIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-markets
+    baseUri: https://{turbonomic_host}/api/v3
+    description: Turbonomic REST API — Markets business capability. Self-contained, no shared references.
+    resources:
+    - name: markets
+      path: /markets
+      operations:
+      - name: getmarkets
+        method: GET
+        description: Get All Markets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: markets-uuid-actions
+      path: /markets/{uuid}/actions
+      operations:
+      - name: getmarketactions
+        method: GET
+        description: Get Market Actions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: Market UUID (use 'Market' for the realtime market)
+          required: true
+        - name: ascending
+          in: query
+          type: boolean
+          description: Sort order for results
+    - name: markets-uuid-actions-stats
+      path: /markets/{uuid}/actions/stats
+      operations:
+      - name: getmarketactionstats
+        method: POST
+        description: Get Market Action Statistics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uuid
+          in: path
+          type: string
+          description: Market UUID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.TURBONOMIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-markets-rest
+    port: 8080
+    description: REST adapter for Turbonomic REST API — Markets. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/markets
+      name: markets
+      description: REST surface for markets.
+      operations:
+      - method: GET
+        name: getmarkets
+        description: Get All Markets
+        call: rest-markets.getmarkets
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/markets/{uuid}/actions
+      name: markets-uuid-actions
+      description: REST surface for markets-uuid-actions.
+      operations:
+      - method: GET
+        name: getmarketactions
+        description: Get Market Actions
+        call: rest-markets.getmarketactions
+        with:
+          uuid: rest.uuid
+          ascending: rest.ascending
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/markets/{uuid}/actions/stats
+      name: markets-uuid-actions-stats
+      description: REST surface for markets-uuid-actions-stats.
+      operations:
+      - method: POST
+        name: getmarketactionstats
+        description: Get Market Action Statistics
+        call: rest-markets.getmarketactionstats
+        with:
+          uuid: rest.uuid
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-markets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Turbonomic REST API — Markets. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-all-markets
+      description: Get All Markets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-markets.getmarkets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-market-actions
+      description: Get Market Actions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-markets.getmarketactions
+      with:
+        uuid: tools.uuid
+        ascending: tools.ascending
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-market-action-statistics
+      description: Get Market Action Statistics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: rest-markets.getmarketactionstats
+      with:
+        uuid: tools.uuid
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
