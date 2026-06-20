@@ -6,7 +6,7 @@ description: >-
   provides a comprehensive REST API enabling programmatic access to resource management data, workload actions, markets,
   policies, groups, templates, and topology information. The platform integrates with AWS, Azure, GCP, Kubernetes,
   VMware, and dozens of APM and ITSM tools.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://www.ibm.com/products/turbonomic
 tags:
   - Application Resource Management
@@ -30,7 +30,7 @@ apis:
       storage), management of markets and policies, retrieval of statistics and analytics, group management, template
       administration, and topology exploration across hybrid cloud environments. The API uses bearer token
       authentication obtained via a login endpoint.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.ibm.com/docs/en/tarm/8.19.3?topic=reference-turbonomic-rest-api-endpoints
     baseURL: https://{turbonomic_host}/api/v3
     tags:
