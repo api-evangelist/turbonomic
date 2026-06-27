@@ -2,20 +2,11 @@
   "repo": "turbonomic",
   "feeds": [
     {
-      "source": "https://www.ibm.com/blog/turbonomic/feed/",
-      "feed_url": "https://www.ibm.com/blog/turbonomic/feed/",
-      "title": "",
+      "source": "https://www.ibm.com/blog/turbonomic/",
       "saved": 0,
-      "method": "none"
-    },
-    {
-      "source": "https://github.com/turbonomic",
-      "feed_url": "https://github.com/turbonomic",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "error": "HTTP 403 Forbidden on IBM blog listing"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T13:17:40Z"
 }
