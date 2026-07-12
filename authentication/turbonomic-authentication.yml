@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/turbonomic-rest-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer token obtained by calling POST /api/v3/login with username and password.
+    Include in the Authorization header as 'Bearer {token}'.
+  sources:
+  - openapi/turbonomic-rest-api-openapi.yml
