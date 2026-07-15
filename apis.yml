@@ -130,6 +130,8 @@ apis:
         description: Container cost visibility integrated with Kubernetes optimization actions.
         url: https://www.ibm.com/products/turbonomic
 common:
+  - type: AgenticAccess
+    url: agentic-access/turbonomic-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/turbonomic-vulnerability-disclosure.yml
   - type: DomainSecurity
