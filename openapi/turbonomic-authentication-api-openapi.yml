@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: Turbonomic REST Actions Authentication API
+  description: The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.
+  version: v3
+  contact:
+    name: IBM Turbonomic Support
+    url: https://www.ibm.com/mysupport/s/topic/0TO0z000000ZnCCGA0/turbonomic-application-resource-management
+  license:
+    name: IBM Terms of Service
+    url: https://www.ibm.com/terms
+servers:
+- url: https://{turbonomic_host}/api/v3
+  description: Turbonomic Server
+  variables:
+    turbonomic_host:
+      description: The hostname or IP address of the Turbonomic server
+      default: turbonomic.example.com
+tags:
+- name: Authentication
+  description: Authenticate and manage sessions
+paths:
+  /login:
+    post:
+      operationId: loginUser
+      summary: Login to Turbonomic
+      description: Authenticate with the Turbonomic server and obtain a session token for subsequent API calls.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - username
+              - password
+              properties:
+                username:
+                  type: string
+                  description: Turbonomic username
+                password:
+                  type: string
+                  description: Turbonomic password
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+        '401':
+          description: Invalid credentials
+  /logout:
+    post:
+      operationId: logoutUser
+      summary: Logout from Turbonomic
+      description: Invalidate the current session token.
+      tags:
+      - Authentication
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Logout successful
+components:
+  schemas:
+    AuthToken:
+      type: object
+      description: Authentication token returned upon successful login
+      properties:
+        token:
+          type: string
+          description: Bearer token for subsequent API calls
+        username:
+          type: string
+          description: Authenticated username
+        uuid:
+          type: string
+          description: User UUID
+        roles:
+          type: array
+          items:
+            type: string
+          description: User roles
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained by calling POST /api/v3/login with username and password. Include in the Authorization header as 'Bearer {token}'.
+externalDocs:
+  description: Turbonomic REST API Reference
+  url: https://www.ibm.com/docs/en/tarm/8.19.3?topic=reference-turbonomic-rest-api-endpoints

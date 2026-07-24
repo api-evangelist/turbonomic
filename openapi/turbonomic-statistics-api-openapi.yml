@@ -1,0 +1,180 @@
+openapi: 3.1.0
+info:
+  title: Turbonomic REST Actions Statistics API
+  description: The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.
+  version: v3
+  contact:
+    name: IBM Turbonomic Support
+    url: https://www.ibm.com/mysupport/s/topic/0TO0z000000ZnCCGA0/turbonomic-application-resource-management
+  license:
+    name: IBM Terms of Service
+    url: https://www.ibm.com/terms
+servers:
+- url: https://{turbonomic_host}/api/v3
+  description: Turbonomic Server
+  variables:
+    turbonomic_host:
+      description: The hostname or IP address of the Turbonomic server
+      default: turbonomic.example.com
+tags:
+- name: Statistics
+  description: Retrieve historical and projected resource statistics
+paths:
+  /entities/{uuid}/stats:
+    get:
+      operationId: getEntityStats
+      summary: Get Entity Statistics
+      description: Retrieve historical and projected resource utilization statistics for an entity.
+      tags:
+      - Statistics
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the entity
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        description: Start date for statistics (ISO 8601 format)
+        schema:
+          type: string
+          format: date-time
+      - name: end_date
+        in: query
+        description: End date for statistics (ISO 8601 format)
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Entity statistics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatSnapshot'
+  /markets/{uuid}/actions/stats:
+    post:
+      operationId: getMarketActionStats
+      summary: Get Market Action Statistics
+      description: Retrieve aggregate statistics for actions in a market filtered by criteria.
+      tags:
+      - Statistics
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: Market UUID
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionFilter'
+      responses:
+        '200':
+          description: Action statistics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatSnapshot'
+  /stats:
+    post:
+      operationId: getStats
+      summary: Get Statistics
+      description: Retrieve aggregated statistics for entities matching the specified criteria.
+      tags:
+      - Statistics
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatFilter'
+      responses:
+        '200':
+          description: Statistics results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatSnapshot'
+components:
+  schemas:
+    StatSnapshot:
+      type: object
+      description: A statistical snapshot for a resource metric
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: Timestamp of the statistic
+        statistics:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the statistic (e.g., CPU, Mem, StorageAmount)
+              value:
+                type: number
+                description: Metric value
+              units:
+                type: string
+                description: Units for the value
+    ActionFilter:
+      type: object
+      description: Filter criteria for retrieving action statistics
+      properties:
+        actionModeList:
+          type: array
+          items:
+            type: string
+          description: Filter by action modes
+        actionTypeList:
+          type: array
+          items:
+            type: string
+          description: Filter by action types
+    StatFilter:
+      type: object
+      description: Filter criteria for retrieving statistics
+      properties:
+        statistics:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Statistic name to retrieve
+        period:
+          type: object
+          properties:
+            startDate:
+              type: string
+              format: date-time
+            endDate:
+              type: string
+              format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained by calling POST /api/v3/login with username and password. Include in the Authorization header as 'Bearer {token}'.
+externalDocs:
+  description: Turbonomic REST API Reference
+  url: https://www.ibm.com/docs/en/tarm/8.19.3?topic=reference-turbonomic-rest-api-endpoints

@@ -1,0 +1,260 @@
+openapi: 3.1.0
+info:
+  title: Turbonomic REST Actions Entities API
+  description: The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.
+  version: v3
+  contact:
+    name: IBM Turbonomic Support
+    url: https://www.ibm.com/mysupport/s/topic/0TO0z000000ZnCCGA0/turbonomic-application-resource-management
+  license:
+    name: IBM Terms of Service
+    url: https://www.ibm.com/terms
+servers:
+- url: https://{turbonomic_host}/api/v3
+  description: Turbonomic Server
+  variables:
+    turbonomic_host:
+      description: The hostname or IP address of the Turbonomic server
+      default: turbonomic.example.com
+tags:
+- name: Entities
+  description: Query and manage entities (VMs, containers, applications, storage)
+paths:
+  /entities:
+    get:
+      operationId: getEntities
+      summary: Get All Entities
+      description: Retrieve all entities in the Turbonomic environment. Entities include virtual machines, containers, applications, storage volumes, hosts, and other infrastructure components.
+      tags:
+      - Entities
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: entity_type
+        in: query
+        description: Filter by entity type (e.g., VirtualMachine, Container, Application)
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of entities to return
+        schema:
+          type: integer
+          default: 50
+      - name: cursor
+        in: query
+        description: Pagination cursor for the next page of results
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of entities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity'
+  /entities/{uuid}:
+    get:
+      operationId: getEntityByUuid
+      summary: Get Entity By UUID
+      description: Retrieve a specific entity by its unique identifier.
+      tags:
+      - Entities
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the entity
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Entity details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+        '404':
+          description: Entity not found
+  /entities/{uuid}/actions:
+    get:
+      operationId: getEntityActions
+      summary: Get Entity Actions
+      description: Retrieve pending optimization actions for a specific entity.
+      tags:
+      - Entities
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the entity
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of actions for the entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Action'
+  /entities/{uuid}/stats:
+    get:
+      operationId: getEntityStats
+      summary: Get Entity Statistics
+      description: Retrieve historical and projected resource utilization statistics for an entity.
+      tags:
+      - Entities
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the entity
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        description: Start date for statistics (ISO 8601 format)
+        schema:
+          type: string
+          format: date-time
+      - name: end_date
+        in: query
+        description: End date for statistics (ISO 8601 format)
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Entity statistics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatSnapshot'
+components:
+  schemas:
+    Action:
+      type: object
+      description: An optimization action recommended by Turbonomic
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the action
+        actionType:
+          type: string
+          description: Type of action (e.g., RESIZE, MOVE, PROVISION, SUSPEND, DELETE)
+        actionMode:
+          type: string
+          description: Execution mode (MANUAL, AUTOMATIC, RECOMMEND, DISABLED)
+        details:
+          type: string
+          description: Human-readable description of the action
+        importance:
+          type: number
+          description: Importance score for prioritizing actions
+        severity:
+          type: string
+          description: Severity level (CRITICAL, MAJOR, MINOR)
+        state:
+          type: string
+          description: Current state of the action
+        createTime:
+          type: string
+          format: date-time
+          description: When the action was first generated
+        target:
+          $ref: '#/components/schemas/EntityRef'
+        newEntity:
+          $ref: '#/components/schemas/EntityRef'
+        currentEntity:
+          $ref: '#/components/schemas/EntityRef'
+        risk:
+          type: object
+          description: Risk assessment for this action
+    EntityRef:
+      type: object
+      description: A reference to an entity
+      properties:
+        uuid:
+          type: string
+          description: Entity UUID
+        displayName:
+          type: string
+          description: Entity display name
+        className:
+          type: string
+          description: Entity type
+    StatSnapshot:
+      type: object
+      description: A statistical snapshot for a resource metric
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: Timestamp of the statistic
+        statistics:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the statistic (e.g., CPU, Mem, StorageAmount)
+              value:
+                type: number
+                description: Metric value
+              units:
+                type: string
+                description: Units for the value
+    Entity:
+      type: object
+      description: A managed entity in the Turbonomic environment
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the entity
+        displayName:
+          type: string
+          description: Human-readable name of the entity
+        className:
+          type: string
+          description: Entity type (e.g., VirtualMachine, Container, Application, PhysicalMachine)
+        environmentType:
+          type: string
+          description: Environment type (CLOUD, ON_PREM, HYBRID)
+          enum:
+          - CLOUD
+          - ON_PREM
+          - HYBRID
+        state:
+          type: string
+          description: Current operational state of the entity
+        severityBreakdown:
+          type: object
+          description: Summary of action severities for this entity
+        tags:
+          type: object
+          description: Key-value tags associated with the entity
+          additionalProperties:
+            type: array
+            items:
+              type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained by calling POST /api/v3/login with username and password. Include in the Authorization header as 'Bearer {token}'.
+externalDocs:
+  description: Turbonomic REST API Reference
+  url: https://www.ibm.com/docs/en/tarm/8.19.3?topic=reference-turbonomic-rest-api-endpoints

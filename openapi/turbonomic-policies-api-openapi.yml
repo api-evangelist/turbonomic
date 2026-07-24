@@ -1,0 +1,173 @@
+openapi: 3.1.0
+info:
+  title: Turbonomic REST Actions Policies API
+  description: The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.
+  version: v3
+  contact:
+    name: IBM Turbonomic Support
+    url: https://www.ibm.com/mysupport/s/topic/0TO0z000000ZnCCGA0/turbonomic-application-resource-management
+  license:
+    name: IBM Terms of Service
+    url: https://www.ibm.com/terms
+servers:
+- url: https://{turbonomic_host}/api/v3
+  description: Turbonomic Server
+  variables:
+    turbonomic_host:
+      description: The hostname or IP address of the Turbonomic server
+      default: turbonomic.example.com
+tags:
+- name: Policies
+  description: Manage automation and placement policies
+paths:
+  /policies:
+    get:
+      operationId: getPolicies
+      summary: Get All Policies
+      description: Retrieve all automation and placement policies defined in Turbonomic.
+      tags:
+      - Policies
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: List of policies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Policy'
+    post:
+      operationId: createPolicy
+      summary: Create Policy
+      description: Create a new automation or placement policy.
+      tags:
+      - Policies
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyInput'
+      responses:
+        '200':
+          description: Created policy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+  /policies/{uuid}:
+    get:
+      operationId: getPolicyByUuid
+      summary: Get Policy By UUID
+      description: Retrieve a specific policy by its unique identifier.
+      tags:
+      - Policies
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the policy
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Policy details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+        '404':
+          description: Policy not found
+    put:
+      operationId: updatePolicy
+      summary: Update Policy
+      description: Update an existing policy.
+      tags:
+      - Policies
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the policy
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyInput'
+      responses:
+        '200':
+          description: Updated policy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+    delete:
+      operationId: deletePolicy
+      summary: Delete Policy
+      description: Delete a policy.
+      tags:
+      - Policies
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the policy
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Policy deleted successfully
+components:
+  schemas:
+    PolicyInput:
+      type: object
+      description: Input for creating or updating a policy
+      required:
+      - displayName
+      properties:
+        displayName:
+          type: string
+          description: Human-readable name of the policy
+        policyType:
+          type: string
+          description: Type of policy
+        enabled:
+          type: boolean
+          description: Whether the policy should be active
+    Policy:
+      type: object
+      description: An automation or placement policy in Turbonomic
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the policy
+        displayName:
+          type: string
+          description: Human-readable name of the policy
+        policyType:
+          type: string
+          description: Type of policy
+        enabled:
+          type: boolean
+          description: Whether the policy is active
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained by calling POST /api/v3/login with username and password. Include in the Authorization header as 'Bearer {token}'.
+externalDocs:
+  description: Turbonomic REST API Reference
+  url: https://www.ibm.com/docs/en/tarm/8.19.3?topic=reference-turbonomic-rest-api-endpoints

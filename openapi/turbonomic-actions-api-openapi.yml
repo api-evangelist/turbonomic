@@ -1,0 +1,169 @@
+openapi: 3.1.0
+info:
+  title: Turbonomic REST Actions API
+  description: The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.
+  version: v3
+  contact:
+    name: IBM Turbonomic Support
+    url: https://www.ibm.com/mysupport/s/topic/0TO0z000000ZnCCGA0/turbonomic-application-resource-management
+  license:
+    name: IBM Terms of Service
+    url: https://www.ibm.com/terms
+servers:
+- url: https://{turbonomic_host}/api/v3
+  description: Turbonomic Server
+  variables:
+    turbonomic_host:
+      description: The hostname or IP address of the Turbonomic server
+      default: turbonomic.example.com
+tags:
+- name: Actions
+  description: Retrieve, accept, and reject optimization actions
+paths:
+  /entities/{uuid}/actions:
+    get:
+      operationId: getEntityActions
+      summary: Get Entity Actions
+      description: Retrieve pending optimization actions for a specific entity.
+      tags:
+      - Actions
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the entity
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of actions for the entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Action'
+  /markets/{uuid}/actions:
+    get:
+      operationId: getMarketActions
+      summary: Get Market Actions
+      description: Retrieve all pending optimization actions for a market. By default, queries the realtime market (Market) for all pending actions.
+      tags:
+      - Actions
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: Market UUID (use 'Market' for the realtime market)
+        schema:
+          type: string
+      - name: ascending
+        in: query
+        description: Sort order for results
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: List of actions in the market
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Action'
+  /actions/{uuid}:
+    get:
+      operationId: getActionByUuid
+      summary: Get Action By UUID
+      description: Retrieve details for a specific optimization action.
+      tags:
+      - Actions
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the action
+        schema:
+          type: string
+      - name: accept
+        in: query
+        description: If true, execute (accept) this action
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Action details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Action'
+        '404':
+          description: Action not found
+components:
+  schemas:
+    EntityRef:
+      type: object
+      description: A reference to an entity
+      properties:
+        uuid:
+          type: string
+          description: Entity UUID
+        displayName:
+          type: string
+          description: Entity display name
+        className:
+          type: string
+          description: Entity type
+    Action:
+      type: object
+      description: An optimization action recommended by Turbonomic
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the action
+        actionType:
+          type: string
+          description: Type of action (e.g., RESIZE, MOVE, PROVISION, SUSPEND, DELETE)
+        actionMode:
+          type: string
+          description: Execution mode (MANUAL, AUTOMATIC, RECOMMEND, DISABLED)
+        details:
+          type: string
+          description: Human-readable description of the action
+        importance:
+          type: number
+          description: Importance score for prioritizing actions
+        severity:
+          type: string
+          description: Severity level (CRITICAL, MAJOR, MINOR)
+        state:
+          type: string
+          description: Current state of the action
+        createTime:
+          type: string
+          format: date-time
+          description: When the action was first generated
+        target:
+          $ref: '#/components/schemas/EntityRef'
+        newEntity:
+          $ref: '#/components/schemas/EntityRef'
+        currentEntity:
+          $ref: '#/components/schemas/EntityRef'
+        risk:
+          type: object
+          description: Risk assessment for this action
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained by calling POST /api/v3/login with username and password. Include in the Authorization header as 'Bearer {token}'.
+externalDocs:
+  description: Turbonomic REST API Reference
+  url: https://www.ibm.com/docs/en/tarm/8.19.3?topic=reference-turbonomic-rest-api-endpoints

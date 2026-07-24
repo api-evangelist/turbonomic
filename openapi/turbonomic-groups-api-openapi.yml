@@ -1,0 +1,193 @@
+openapi: 3.1.0
+info:
+  title: Turbonomic REST Actions Groups API
+  description: The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.
+  version: v3
+  contact:
+    name: IBM Turbonomic Support
+    url: https://www.ibm.com/mysupport/s/topic/0TO0z000000ZnCCGA0/turbonomic-application-resource-management
+  license:
+    name: IBM Terms of Service
+    url: https://www.ibm.com/terms
+servers:
+- url: https://{turbonomic_host}/api/v3
+  description: Turbonomic Server
+  variables:
+    turbonomic_host:
+      description: The hostname or IP address of the Turbonomic server
+      default: turbonomic.example.com
+tags:
+- name: Groups
+  description: Create and manage logical groups of entities
+paths:
+  /groups:
+    get:
+      operationId: getGroups
+      summary: Get All Groups
+      description: Retrieve all entity groups defined in the Turbonomic environment.
+      tags:
+      - Groups
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: group_type
+        in: query
+        description: Filter by group type
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+    post:
+      operationId: createGroup
+      summary: Create Group
+      description: Create a new entity group for scoped policy application and reporting.
+      tags:
+      - Groups
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupInput'
+      responses:
+        '200':
+          description: Created group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+  /groups/{uuid}:
+    get:
+      operationId: getGroupByUuid
+      summary: Get Group By UUID
+      description: Retrieve a specific entity group by its unique identifier.
+      tags:
+      - Groups
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the group
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Group details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '404':
+          description: Group not found
+    put:
+      operationId: updateGroup
+      summary: Update Group
+      description: Update an existing entity group.
+      tags:
+      - Groups
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the group
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupInput'
+      responses:
+        '200':
+          description: Updated group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+    delete:
+      operationId: deleteGroup
+      summary: Delete Group
+      description: Delete an entity group.
+      tags:
+      - Groups
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the group
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Group deleted successfully
+components:
+  schemas:
+    Group:
+      type: object
+      description: A logical group of entities in Turbonomic
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the group
+        displayName:
+          type: string
+          description: Human-readable name of the group
+        groupType:
+          type: string
+          description: Type of entities in this group
+        isStatic:
+          type: boolean
+          description: If true, the group has a fixed membership list
+        memberCount:
+          type: integer
+          description: Number of entities in the group
+    GroupInput:
+      type: object
+      description: Input for creating or updating a group
+      required:
+      - displayName
+      - groupType
+      properties:
+        displayName:
+          type: string
+          description: Human-readable name of the group
+        groupType:
+          type: string
+          description: Entity type for this group
+        isStatic:
+          type: boolean
+          description: If true, the group has a fixed membership list
+        memberUuids:
+          type: array
+          items:
+            type: string
+          description: For static groups, the list of member entity UUIDs
+        criteriaList:
+          type: array
+          items:
+            type: object
+          description: For dynamic groups, the filter criteria
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained by calling POST /api/v3/login with username and password. Include in the Authorization header as 'Bearer {token}'.
+externalDocs:
+  description: Turbonomic REST API Reference
+  url: https://www.ibm.com/docs/en/tarm/8.19.3?topic=reference-turbonomic-rest-api-endpoints

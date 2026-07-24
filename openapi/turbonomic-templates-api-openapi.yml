@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  title: Turbonomic REST Actions Templates API
+  description: The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.
+  version: v3
+  contact:
+    name: IBM Turbonomic Support
+    url: https://www.ibm.com/mysupport/s/topic/0TO0z000000ZnCCGA0/turbonomic-application-resource-management
+  license:
+    name: IBM Terms of Service
+    url: https://www.ibm.com/terms
+servers:
+- url: https://{turbonomic_host}/api/v3
+  description: Turbonomic Server
+  variables:
+    turbonomic_host:
+      description: The hostname or IP address of the Turbonomic server
+      default: turbonomic.example.com
+tags:
+- name: Templates
+  description: Manage resource and hardware templates
+paths:
+  /templates:
+    get:
+      operationId: getTemplates
+      summary: Get All Templates
+      description: Retrieve all resource and hardware templates defined in Turbonomic.
+      tags:
+      - Templates
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: List of templates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+    post:
+      operationId: createTemplate
+      summary: Create Template
+      description: Create a new resource or hardware template.
+      tags:
+      - Templates
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateInput'
+      responses:
+        '200':
+          description: Created template
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+  /templates/{uuid}:
+    get:
+      operationId: getTemplateByUuid
+      summary: Get Template By UUID
+      description: Retrieve a specific template by its unique identifier.
+      tags:
+      - Templates
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the template
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Template details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '404':
+          description: Template not found
+    delete:
+      operationId: deleteTemplate
+      summary: Delete Template
+      description: Delete a template.
+      tags:
+      - Templates
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the template
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Template deleted successfully
+components:
+  schemas:
+    TemplateInput:
+      type: object
+      description: Input for creating or updating a template
+      required:
+      - displayName
+      - className
+      properties:
+        displayName:
+          type: string
+          description: Human-readable name of the template
+        className:
+          type: string
+          description: Entity type this template applies to
+    Template:
+      type: object
+      description: A resource or hardware template in Turbonomic
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the template
+        displayName:
+          type: string
+          description: Human-readable name of the template
+        className:
+          type: string
+          description: Entity type this template applies to
+        price:
+          type: number
+          description: Cost associated with this template
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained by calling POST /api/v3/login with username and password. Include in the Authorization header as 'Bearer {token}'.
+externalDocs:
+  description: Turbonomic REST API Reference
+  url: https://www.ibm.com/docs/en/tarm/8.19.3?topic=reference-turbonomic-rest-api-endpoints

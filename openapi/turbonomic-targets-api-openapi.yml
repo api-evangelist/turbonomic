@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: Turbonomic REST Actions Targets API
+  description: The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.
+  version: v3
+  contact:
+    name: IBM Turbonomic Support
+    url: https://www.ibm.com/mysupport/s/topic/0TO0z000000ZnCCGA0/turbonomic-application-resource-management
+  license:
+    name: IBM Terms of Service
+    url: https://www.ibm.com/terms
+servers:
+- url: https://{turbonomic_host}/api/v3
+  description: Turbonomic Server
+  variables:
+    turbonomic_host:
+      description: The hostname or IP address of the Turbonomic server
+      default: turbonomic.example.com
+tags:
+- name: Targets
+  description: Manage discovery targets and integrations
+paths:
+  /targets:
+    get:
+      operationId: getTargets
+      summary: Get All Targets
+      description: Retrieve all discovery targets configured in Turbonomic, including cloud accounts, hypervisors, container platforms, and monitoring systems.
+      tags:
+      - Targets
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: List of targets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Target'
+  /targets/{uuid}:
+    get:
+      operationId: getTargetByUuid
+      summary: Get Target By UUID
+      description: Retrieve a specific discovery target by its unique identifier.
+      tags:
+      - Targets
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        description: The unique identifier of the target
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Target details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Target'
+        '404':
+          description: Target not found
+components:
+  schemas:
+    Target:
+      type: object
+      description: A discovery target connected to Turbonomic
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the target
+        displayName:
+          type: string
+          description: Human-readable name of the target
+        type:
+          type: string
+          description: Target type (e.g., AWS, Azure, vCenter, Kubernetes)
+        status:
+          type: string
+          description: Validation status of the target
+        lastValidated:
+          type: string
+          format: date-time
+          description: When the target was last successfully validated
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained by calling POST /api/v3/login with username and password. Include in the Authorization header as 'Bearer {token}'.
+externalDocs:
+  description: Turbonomic REST API Reference
+  url: https://www.ibm.com/docs/en/tarm/8.19.3?topic=reference-turbonomic-rest-api-endpoints
