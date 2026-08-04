@@ -1,0 +1,457 @@
+{
+  "info": {
+    "_postman_id": "76c73e09-21a6-452e-beab-6046f682a8db",
+    "name": "Turbonomic REST Actions Templates API",
+    "description": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:20:54.000Z",
+    "updatedAt": "2026-07-28T03:20:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-76c73e09-21a6-452e-beab-6046f682a8db"
+  },
+  "item": [
+    {
+      "name": "templates",
+      "item": [
+        {
+          "name": "{uuid}",
+          "item": [
+            {
+              "name": "Get Template By UUID",
+              "id": "b00f6ad6-9310-45a3-aa4e-9ec6066ba666",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/templates/:uuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "templates",
+                    ":uuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "6cd4bb66-4dcd-48ea-bcc3-bf74cb66b66d",
+                      "key": "uuid",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the template"
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific template by its unique identifier."
+              },
+              "response": [
+                {
+                  "id": "5cd82776-5415-496a-8e03-f496760ac5c3",
+                  "name": "Template details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/templates/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "templates",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"uuid\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"className\": \"<string>\",\n  \"price\": \"<number>\"\n}",
+                  "createdAt": "2026-07-28T03:20:54.000Z",
+                  "updatedAt": "2026-07-28T03:20:54.000Z",
+                  "uid": "35240-5cd82776-5415-496a-8e03-f496760ac5c3"
+                },
+                {
+                  "id": "3fb449fa-c8c3-4dd7-ac53-93f1ce3f5b5e",
+                  "name": "Template not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/templates/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "templates",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:20:54.000Z",
+                  "updatedAt": "2026-07-28T03:20:54.000Z",
+                  "uid": "35240-3fb449fa-c8c3-4dd7-ac53-93f1ce3f5b5e"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:54.000Z",
+              "updatedAt": "2026-07-28T03:20:54.000Z",
+              "uid": "35240-b00f6ad6-9310-45a3-aa4e-9ec6066ba666"
+            },
+            {
+              "name": "Delete Template",
+              "id": "56755687-662d-4f7f-8709-b13b292c90a6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/templates/:uuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "templates",
+                    ":uuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c07dfe9f-f364-4b39-a3de-4262c81ab12d",
+                      "key": "uuid",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the template"
+                    }
+                  ]
+                },
+                "description": "Delete a template."
+              },
+              "response": [
+                {
+                  "id": "2fca034b-5b3d-490e-bd0e-f5983c12dff8",
+                  "name": "Template deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/templates/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "templates",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:20:54.000Z",
+                  "updatedAt": "2026-07-28T03:20:54.000Z",
+                  "uid": "35240-2fca034b-5b3d-490e-bd0e-f5983c12dff8"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:54.000Z",
+              "updatedAt": "2026-07-28T03:20:54.000Z",
+              "uid": "35240-56755687-662d-4f7f-8709-b13b292c90a6"
+            }
+          ],
+          "id": "e7f2b200-a9e7-4eb9-86b5-7994e28d48fd",
+          "createdAt": "2026-07-28T03:20:54.000Z",
+          "updatedAt": "2026-07-28T03:20:54.000Z",
+          "uid": "35240-e7f2b200-a9e7-4eb9-86b5-7994e28d48fd"
+        },
+        {
+          "name": "Get All Templates",
+          "id": "051029a7-0dea-4b79-9764-11f3cb7d975a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/templates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "templates"
+              ]
+            },
+            "description": "Retrieve all resource and hardware templates defined in Turbonomic."
+          },
+          "response": [
+            {
+              "id": "a2333348-ce1b-40c1-b92d-838503a01c5a",
+              "name": "List of templates",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/templates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "templates"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"className\": \"<string>\",\n    \"price\": \"<number>\"\n  },\n  {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"className\": \"<string>\",\n    \"price\": \"<number>\"\n  }\n]",
+              "createdAt": "2026-07-28T03:20:54.000Z",
+              "updatedAt": "2026-07-28T03:20:54.000Z",
+              "uid": "35240-a2333348-ce1b-40c1-b92d-838503a01c5a"
+            }
+          ],
+          "createdAt": "2026-07-28T03:20:54.000Z",
+          "updatedAt": "2026-07-28T03:20:54.000Z",
+          "uid": "35240-051029a7-0dea-4b79-9764-11f3cb7d975a"
+        },
+        {
+          "name": "Create Template",
+          "id": "1749470e-47bb-47cc-80dd-baf5123df35c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"className\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/templates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "templates"
+              ]
+            },
+            "description": "Create a new resource or hardware template."
+          },
+          "response": [
+            {
+              "id": "f153f211-61bc-4fd6-8661-31766bbbeb6a",
+              "name": "Created template",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"className\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/templates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "templates"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"uuid\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"className\": \"<string>\",\n  \"price\": \"<number>\"\n}",
+              "createdAt": "2026-07-28T03:20:54.000Z",
+              "updatedAt": "2026-07-28T03:20:54.000Z",
+              "uid": "35240-f153f211-61bc-4fd6-8661-31766bbbeb6a"
+            }
+          ],
+          "createdAt": "2026-07-28T03:20:54.000Z",
+          "updatedAt": "2026-07-28T03:20:54.000Z",
+          "uid": "35240-1749470e-47bb-47cc-80dd-baf5123df35c"
+        }
+      ],
+      "id": "2c0854b6-53ab-4afc-8f98-04567a4647b6",
+      "createdAt": "2026-07-28T03:20:54.000Z",
+      "updatedAt": "2026-07-28T03:20:54.000Z",
+      "uid": "35240-2c0854b6-53ab-4afc-8f98-04567a4647b6"
+    }
+  ],
+  "variable": [
+    {
+      "key": "turbonomic_host",
+      "value": "turbonomic.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{turbonomic_host}}/api/v3"
+    }
+  ]
+}

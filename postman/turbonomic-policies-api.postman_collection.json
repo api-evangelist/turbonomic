@@ -1,0 +1,583 @@
+{
+  "info": {
+    "_postman_id": "32668464-0313-4d90-81b4-9a06f5da08a6",
+    "name": "Turbonomic REST Actions Policies API",
+    "description": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:20:51.000Z",
+    "updatedAt": "2026-07-28T03:20:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-32668464-0313-4d90-81b4-9a06f5da08a6"
+  },
+  "item": [
+    {
+      "name": "policies",
+      "item": [
+        {
+          "name": "{uuid}",
+          "item": [
+            {
+              "name": "Get Policy By UUID",
+              "id": "6e9d1e8e-ecf2-44ca-93cd-da9caae365d1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policies/:uuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies",
+                    ":uuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "bb2f57b4-575e-4d35-947e-99f5a89039c9",
+                      "key": "uuid",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the policy"
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific policy by its unique identifier."
+              },
+              "response": [
+                {
+                  "id": "e721b2f0-f9af-4ae4-9906-39283f1bc406",
+                  "name": "Policy details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policies/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policies",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"uuid\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"policyType\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T03:20:52.000Z",
+                  "updatedAt": "2026-07-28T03:20:52.000Z",
+                  "uid": "35240-e721b2f0-f9af-4ae4-9906-39283f1bc406"
+                },
+                {
+                  "id": "9895821f-1675-41b1-89df-625402edf5be",
+                  "name": "Policy not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policies/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policies",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:20:52.000Z",
+                  "updatedAt": "2026-07-28T03:20:52.000Z",
+                  "uid": "35240-9895821f-1675-41b1-89df-625402edf5be"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:51.000Z",
+              "updatedAt": "2026-07-28T03:20:51.000Z",
+              "uid": "35240-6e9d1e8e-ecf2-44ca-93cd-da9caae365d1"
+            },
+            {
+              "name": "Update Policy",
+              "id": "91e3a11a-59fb-4cb9-9c46-ac6d0bae31d7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"policyType\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policies/:uuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies",
+                    ":uuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5ed51c4c-bca5-456e-b75c-7fd65e776f42",
+                      "key": "uuid",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the policy"
+                    }
+                  ]
+                },
+                "description": "Update an existing policy."
+              },
+              "response": [
+                {
+                  "id": "aaa606bc-09a2-4d1a-ab9c-ab985f6a5f93",
+                  "name": "Updated policy",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"policyType\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/policies/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policies",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"uuid\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"policyType\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T03:20:52.000Z",
+                  "updatedAt": "2026-07-28T03:20:52.000Z",
+                  "uid": "35240-aaa606bc-09a2-4d1a-ab9c-ab985f6a5f93"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:51.000Z",
+              "updatedAt": "2026-07-28T03:20:51.000Z",
+              "uid": "35240-91e3a11a-59fb-4cb9-9c46-ac6d0bae31d7"
+            },
+            {
+              "name": "Delete Policy",
+              "id": "2764ab53-5122-4d65-b3d5-7b21f6445257",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/policies/:uuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies",
+                    ":uuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "97d8feec-068b-49fd-8c3a-367dec64a0ee",
+                      "key": "uuid",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the policy"
+                    }
+                  ]
+                },
+                "description": "Delete a policy."
+              },
+              "response": [
+                {
+                  "id": "1bdc9ad3-ba7c-4ea3-bce6-9cac465f82c4",
+                  "name": "Policy deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policies/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policies",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:20:52.000Z",
+                  "updatedAt": "2026-07-28T03:20:52.000Z",
+                  "uid": "35240-1bdc9ad3-ba7c-4ea3-bce6-9cac465f82c4"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:51.000Z",
+              "updatedAt": "2026-07-28T03:20:51.000Z",
+              "uid": "35240-2764ab53-5122-4d65-b3d5-7b21f6445257"
+            }
+          ],
+          "id": "0755c060-4f25-45b7-b9f0-ccb4884b13b7",
+          "createdAt": "2026-07-28T03:20:51.000Z",
+          "updatedAt": "2026-07-28T03:20:51.000Z",
+          "uid": "35240-0755c060-4f25-45b7-b9f0-ccb4884b13b7"
+        },
+        {
+          "name": "Get All Policies",
+          "id": "b1ccfa01-065f-4c3b-b5f6-f5a7677dd43a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/policies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "policies"
+              ]
+            },
+            "description": "Retrieve all automation and placement policies defined in Turbonomic."
+          },
+          "response": [
+            {
+              "id": "03d273e8-52f8-400a-919e-44672d6f4a65",
+              "name": "List of policies",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"policyType\": \"<string>\",\n    \"enabled\": \"<boolean>\"\n  },\n  {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"policyType\": \"<string>\",\n    \"enabled\": \"<boolean>\"\n  }\n]",
+              "createdAt": "2026-07-28T03:20:52.000Z",
+              "updatedAt": "2026-07-28T03:20:52.000Z",
+              "uid": "35240-03d273e8-52f8-400a-919e-44672d6f4a65"
+            }
+          ],
+          "createdAt": "2026-07-28T03:20:51.000Z",
+          "updatedAt": "2026-07-28T03:20:51.000Z",
+          "uid": "35240-b1ccfa01-065f-4c3b-b5f6-f5a7677dd43a"
+        },
+        {
+          "name": "Create Policy",
+          "id": "c9741a02-7e2b-491f-a48b-bc44676a8614",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"policyType\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/policies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "policies"
+              ]
+            },
+            "description": "Create a new automation or placement policy."
+          },
+          "response": [
+            {
+              "id": "057d072b-4c99-4fb4-99fc-23f6905e66bd",
+              "name": "Created policy",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"policyType\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policies"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"uuid\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"policyType\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T03:20:52.000Z",
+              "updatedAt": "2026-07-28T03:20:52.000Z",
+              "uid": "35240-057d072b-4c99-4fb4-99fc-23f6905e66bd"
+            }
+          ],
+          "createdAt": "2026-07-28T03:20:51.000Z",
+          "updatedAt": "2026-07-28T03:20:51.000Z",
+          "uid": "35240-c9741a02-7e2b-491f-a48b-bc44676a8614"
+        }
+      ],
+      "id": "c5274131-f7f4-4a26-994e-bdc816c71b2e",
+      "createdAt": "2026-07-28T03:20:51.000Z",
+      "updatedAt": "2026-07-28T03:20:51.000Z",
+      "uid": "35240-c5274131-f7f4-4a26-994e-bdc816c71b2e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "turbonomic_host",
+      "value": "turbonomic.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{turbonomic_host}}/api/v3"
+    }
+  ]
+}

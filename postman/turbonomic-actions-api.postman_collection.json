@@ -1,0 +1,468 @@
+{
+  "info": {
+    "_postman_id": "e05b14df-824e-4934-82c9-bfc2c98f3050",
+    "name": "Turbonomic REST Actions API",
+    "description": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:20:46.000Z",
+    "updatedAt": "2026-07-28T03:20:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e05b14df-824e-4934-82c9-bfc2c98f3050"
+  },
+  "item": [
+    {
+      "name": "entities",
+      "item": [
+        {
+          "name": "{uuid}",
+          "item": [
+            {
+              "name": "actions",
+              "item": [
+                {
+                  "name": "Get Entity Actions",
+                  "id": "5abdb502-1eda-471f-a02c-804bf4db6d1b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:uuid/actions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":uuid",
+                        "actions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "96195244-de5e-40a4-b2a3-3942ac5441fd",
+                          "key": "uuid",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the entity"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve pending optimization actions for a specific entity."
+                  },
+                  "response": [
+                    {
+                      "id": "d1ddce9c-031a-4acb-829d-10007e6839d9",
+                      "name": "List of actions for the entity",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/entities/:uuid/actions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "entities",
+                            ":uuid",
+                            "actions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"uuid\": \"<string>\",\n    \"actionType\": \"<string>\",\n    \"actionMode\": \"<string>\",\n    \"details\": \"<string>\",\n    \"importance\": \"<number>\",\n    \"severity\": \"<string>\",\n    \"state\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"target\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"risk\": {}\n  },\n  {\n    \"uuid\": \"<string>\",\n    \"actionType\": \"<string>\",\n    \"actionMode\": \"<string>\",\n    \"details\": \"<string>\",\n    \"importance\": \"<number>\",\n    \"severity\": \"<string>\",\n    \"state\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"target\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"risk\": {}\n  }\n]",
+                      "createdAt": "2026-07-28T03:20:47.000Z",
+                      "updatedAt": "2026-07-28T03:20:47.000Z",
+                      "uid": "35240-d1ddce9c-031a-4acb-829d-10007e6839d9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:20:47.000Z",
+                  "updatedAt": "2026-07-28T03:20:47.000Z",
+                  "uid": "35240-5abdb502-1eda-471f-a02c-804bf4db6d1b"
+                }
+              ],
+              "id": "1475d30d-116b-4ca3-9486-7539952db6e9",
+              "createdAt": "2026-07-28T03:20:47.000Z",
+              "updatedAt": "2026-07-28T03:20:47.000Z",
+              "uid": "35240-1475d30d-116b-4ca3-9486-7539952db6e9"
+            }
+          ],
+          "id": "cbfd8b21-bf01-4699-9a45-618ab4a727b7",
+          "createdAt": "2026-07-28T03:20:47.000Z",
+          "updatedAt": "2026-07-28T03:20:47.000Z",
+          "uid": "35240-cbfd8b21-bf01-4699-9a45-618ab4a727b7"
+        }
+      ],
+      "id": "8a4de84e-1cd0-4f68-8812-f8b276be013c",
+      "createdAt": "2026-07-28T03:20:47.000Z",
+      "updatedAt": "2026-07-28T03:20:47.000Z",
+      "uid": "35240-8a4de84e-1cd0-4f68-8812-f8b276be013c"
+    },
+    {
+      "name": "markets",
+      "item": [
+        {
+          "name": "{uuid}",
+          "item": [
+            {
+              "name": "actions",
+              "item": [
+                {
+                  "name": "Get Market Actions",
+                  "id": "7d428374-c81b-4071-a427-3d578462063f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/markets/:uuid/actions?ascending=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "markets",
+                        ":uuid",
+                        "actions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Sort order for results",
+                          "key": "ascending",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "dd70225c-cf77-4446-a332-a1a236eb61b1",
+                          "key": "uuid",
+                          "value": "<string>",
+                          "description": "(Required) Market UUID (use 'Market' for the realtime market)"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all pending optimization actions for a market. By default, queries the realtime market (Market) for all pending actions."
+                  },
+                  "response": [
+                    {
+                      "id": "c7daeebb-0197-4ad3-9b61-6541e767dcd1",
+                      "name": "List of actions in the market",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/markets/:uuid/actions?ascending=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "markets",
+                            ":uuid",
+                            "actions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Sort order for results",
+                              "key": "ascending",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"uuid\": \"<string>\",\n    \"actionType\": \"<string>\",\n    \"actionMode\": \"<string>\",\n    \"details\": \"<string>\",\n    \"importance\": \"<number>\",\n    \"severity\": \"<string>\",\n    \"state\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"target\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"risk\": {}\n  },\n  {\n    \"uuid\": \"<string>\",\n    \"actionType\": \"<string>\",\n    \"actionMode\": \"<string>\",\n    \"details\": \"<string>\",\n    \"importance\": \"<number>\",\n    \"severity\": \"<string>\",\n    \"state\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"target\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"risk\": {}\n  }\n]",
+                      "createdAt": "2026-07-28T03:20:47.000Z",
+                      "updatedAt": "2026-07-28T03:20:47.000Z",
+                      "uid": "35240-c7daeebb-0197-4ad3-9b61-6541e767dcd1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:20:47.000Z",
+                  "updatedAt": "2026-07-28T03:20:47.000Z",
+                  "uid": "35240-7d428374-c81b-4071-a427-3d578462063f"
+                }
+              ],
+              "id": "705ebb2a-ac51-4e20-83cb-baec7a15846b",
+              "createdAt": "2026-07-28T03:20:47.000Z",
+              "updatedAt": "2026-07-28T03:20:47.000Z",
+              "uid": "35240-705ebb2a-ac51-4e20-83cb-baec7a15846b"
+            }
+          ],
+          "id": "15ad4eae-b178-4f00-ba68-cf6e6353caed",
+          "createdAt": "2026-07-28T03:20:47.000Z",
+          "updatedAt": "2026-07-28T03:20:47.000Z",
+          "uid": "35240-15ad4eae-b178-4f00-ba68-cf6e6353caed"
+        }
+      ],
+      "id": "35067bff-a8cb-4813-aa9a-e2b450a61666",
+      "createdAt": "2026-07-28T03:20:47.000Z",
+      "updatedAt": "2026-07-28T03:20:47.000Z",
+      "uid": "35240-35067bff-a8cb-4813-aa9a-e2b450a61666"
+    },
+    {
+      "name": "actions",
+      "item": [
+        {
+          "name": "{uuid}",
+          "item": [
+            {
+              "name": "Get Action By UUID",
+              "id": "ab55b01e-639e-4425-83e5-7574c21da7b7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/actions/:uuid?accept=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "actions",
+                    ":uuid"
+                  ],
+                  "query": [
+                    {
+                      "description": "If true, execute (accept) this action",
+                      "key": "accept",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "1b48aaa6-90be-446f-9177-07e04a011aae",
+                      "key": "uuid",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the action"
+                    }
+                  ]
+                },
+                "description": "Retrieve details for a specific optimization action."
+              },
+              "response": [
+                {
+                  "id": "a6946da7-1edf-4555-ac11-2aec38daf6d3",
+                  "name": "Action details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/actions/:uuid?accept=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "actions",
+                        ":uuid"
+                      ],
+                      "query": [
+                        {
+                          "description": "If true, execute (accept) this action",
+                          "key": "accept",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"uuid\": \"<string>\",\n  \"actionType\": \"<string>\",\n  \"actionMode\": \"<string>\",\n  \"details\": \"<string>\",\n  \"importance\": \"<number>\",\n  \"severity\": \"<string>\",\n  \"state\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"target\": {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"className\": \"<string>\"\n  },\n  \"newEntity\": {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"className\": \"<string>\"\n  },\n  \"currentEntity\": {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"className\": \"<string>\"\n  },\n  \"risk\": {}\n}",
+                  "createdAt": "2026-07-28T03:20:47.000Z",
+                  "updatedAt": "2026-07-28T03:20:47.000Z",
+                  "uid": "35240-a6946da7-1edf-4555-ac11-2aec38daf6d3"
+                },
+                {
+                  "id": "6cf79ddc-1829-478e-9bb6-cfb5f25061e5",
+                  "name": "Action not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/actions/:uuid?accept=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "actions",
+                        ":uuid"
+                      ],
+                      "query": [
+                        {
+                          "description": "If true, execute (accept) this action",
+                          "key": "accept",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:20:47.000Z",
+                  "updatedAt": "2026-07-28T03:20:47.000Z",
+                  "uid": "35240-6cf79ddc-1829-478e-9bb6-cfb5f25061e5"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:47.000Z",
+              "updatedAt": "2026-07-28T03:20:47.000Z",
+              "uid": "35240-ab55b01e-639e-4425-83e5-7574c21da7b7"
+            }
+          ],
+          "id": "680f615c-ef94-4f83-b26b-8a710e9ba313",
+          "createdAt": "2026-07-28T03:20:47.000Z",
+          "updatedAt": "2026-07-28T03:20:47.000Z",
+          "uid": "35240-680f615c-ef94-4f83-b26b-8a710e9ba313"
+        }
+      ],
+      "id": "f4f4cf5f-bd6c-46dc-8a39-b55e7e5f1645",
+      "createdAt": "2026-07-28T03:20:47.000Z",
+      "updatedAt": "2026-07-28T03:20:47.000Z",
+      "uid": "35240-f4f4cf5f-bd6c-46dc-8a39-b55e7e5f1645"
+    }
+  ],
+  "variable": [
+    {
+      "key": "turbonomic_host",
+      "value": "turbonomic.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{turbonomic_host}}/api/v3"
+    }
+  ]
+}

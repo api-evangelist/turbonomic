@@ -1,0 +1,461 @@
+{
+  "info": {
+    "_postman_id": "329f7f70-7d04-494a-91d1-487fc15898b0",
+    "name": "Turbonomic REST Actions Statistics API",
+    "description": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:20:52.000Z",
+    "updatedAt": "2026-07-28T03:20:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-329f7f70-7d04-494a-91d1-487fc15898b0"
+  },
+  "item": [
+    {
+      "name": "entities",
+      "item": [
+        {
+          "name": "{uuid}",
+          "item": [
+            {
+              "name": "stats",
+              "item": [
+                {
+                  "name": "Get Entity Statistics",
+                  "id": "03fcdbab-7b12-4e7d-9c47-d9587b6b68a4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:uuid/stats?start_date=<dateTime>&end_date=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":uuid",
+                        "stats"
+                      ],
+                      "query": [
+                        {
+                          "description": "Start date for statistics (ISO 8601 format)",
+                          "key": "start_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "End date for statistics (ISO 8601 format)",
+                          "key": "end_date",
+                          "value": "<dateTime>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "42261cb9-fb3c-48e9-9991-cdeb321581a0",
+                          "key": "uuid",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the entity"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve historical and projected resource utilization statistics for an entity."
+                  },
+                  "response": [
+                    {
+                      "id": "9bb93e8e-22f8-498f-81ab-a32d19dc7a3f",
+                      "name": "Entity statistics",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/entities/:uuid/stats?start_date=<dateTime>&end_date=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "entities",
+                            ":uuid",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start date for statistics (ISO 8601 format)",
+                              "key": "start_date",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "End date for statistics (ISO 8601 format)",
+                              "key": "end_date",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"date\": \"<dateTime>\",\n    \"statistics\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"date\": \"<dateTime>\",\n    \"statistics\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      }\n    ]\n  }\n]",
+                      "createdAt": "2026-07-28T03:20:52.000Z",
+                      "updatedAt": "2026-07-28T03:20:52.000Z",
+                      "uid": "35240-9bb93e8e-22f8-498f-81ab-a32d19dc7a3f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:20:52.000Z",
+                  "updatedAt": "2026-07-28T03:20:52.000Z",
+                  "uid": "35240-03fcdbab-7b12-4e7d-9c47-d9587b6b68a4"
+                }
+              ],
+              "id": "90bc60c1-589d-4c68-b925-d61aeb10e07d",
+              "createdAt": "2026-07-28T03:20:52.000Z",
+              "updatedAt": "2026-07-28T03:20:52.000Z",
+              "uid": "35240-90bc60c1-589d-4c68-b925-d61aeb10e07d"
+            }
+          ],
+          "id": "beafe6d6-9103-4529-a631-b48bf03ffd84",
+          "createdAt": "2026-07-28T03:20:52.000Z",
+          "updatedAt": "2026-07-28T03:20:52.000Z",
+          "uid": "35240-beafe6d6-9103-4529-a631-b48bf03ffd84"
+        }
+      ],
+      "id": "20afc34c-db67-4e0c-b486-f52cc993e269",
+      "createdAt": "2026-07-28T03:20:52.000Z",
+      "updatedAt": "2026-07-28T03:20:52.000Z",
+      "uid": "35240-20afc34c-db67-4e0c-b486-f52cc993e269"
+    },
+    {
+      "name": "markets",
+      "item": [
+        {
+          "name": "{uuid}",
+          "item": [
+            {
+              "name": "actions",
+              "item": [
+                {
+                  "name": "stats",
+                  "item": [
+                    {
+                      "name": "Get Market Action Statistics",
+                      "id": "4e5a0c55-21eb-4475-875d-3794660dd88f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"actionModeList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actionTypeList\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/markets/:uuid/actions/stats",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "markets",
+                            ":uuid",
+                            "actions",
+                            "stats"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a73d704f-0af8-4399-bfbf-c0cec1ff462e",
+                              "key": "uuid",
+                              "value": "<string>",
+                              "description": "(Required) Market UUID"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve aggregate statistics for actions in a market filtered by criteria."
+                      },
+                      "response": [
+                        {
+                          "id": "40ac21e7-c5d0-442e-9f5c-7ed4235456de",
+                          "name": "Action statistics",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"actionModeList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actionTypeList\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/markets/:uuid/actions/stats",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "markets",
+                                ":uuid",
+                                "actions",
+                                "stats"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"date\": \"<dateTime>\",\n    \"statistics\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"date\": \"<dateTime>\",\n    \"statistics\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      }\n    ]\n  }\n]",
+                          "createdAt": "2026-07-28T03:20:52.000Z",
+                          "updatedAt": "2026-07-28T03:20:52.000Z",
+                          "uid": "35240-40ac21e7-c5d0-442e-9f5c-7ed4235456de"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:20:52.000Z",
+                      "updatedAt": "2026-07-28T03:20:52.000Z",
+                      "uid": "35240-4e5a0c55-21eb-4475-875d-3794660dd88f"
+                    }
+                  ],
+                  "id": "ea792f6f-922d-4a32-8212-a51ac460b485",
+                  "createdAt": "2026-07-28T03:20:52.000Z",
+                  "updatedAt": "2026-07-28T03:20:52.000Z",
+                  "uid": "35240-ea792f6f-922d-4a32-8212-a51ac460b485"
+                }
+              ],
+              "id": "8d188baa-b157-4333-91ff-b6fb7147916d",
+              "createdAt": "2026-07-28T03:20:52.000Z",
+              "updatedAt": "2026-07-28T03:20:52.000Z",
+              "uid": "35240-8d188baa-b157-4333-91ff-b6fb7147916d"
+            }
+          ],
+          "id": "0d93f62b-cd43-466c-80b5-e4beb6a2e97a",
+          "createdAt": "2026-07-28T03:20:52.000Z",
+          "updatedAt": "2026-07-28T03:20:52.000Z",
+          "uid": "35240-0d93f62b-cd43-466c-80b5-e4beb6a2e97a"
+        }
+      ],
+      "id": "7aed025c-2e55-4c46-af0a-d373c07ef1ea",
+      "createdAt": "2026-07-28T03:20:52.000Z",
+      "updatedAt": "2026-07-28T03:20:52.000Z",
+      "uid": "35240-7aed025c-2e55-4c46-af0a-d373c07ef1ea"
+    },
+    {
+      "name": "stats",
+      "item": [
+        {
+          "name": "Get Statistics",
+          "id": "2b1e5f32-b213-41de-aeae-d26bae996e09",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"statistics\": [\n    {\n      \"name\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\"\n    }\n  ],\n  \"period\": {\n    \"startDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/stats",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats"
+              ]
+            },
+            "description": "Retrieve aggregated statistics for entities matching the specified criteria."
+          },
+          "response": [
+            {
+              "id": "c42e353f-132b-4cc3-8ec1-702907d00e6b",
+              "name": "Statistics results",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statistics\": [\n    {\n      \"name\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\"\n    }\n  ],\n  \"period\": {\n    \"startDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/stats",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stats"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"date\": \"<dateTime>\",\n    \"statistics\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"date\": \"<dateTime>\",\n    \"statistics\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      }\n    ]\n  }\n]",
+              "createdAt": "2026-07-28T03:20:52.000Z",
+              "updatedAt": "2026-07-28T03:20:52.000Z",
+              "uid": "35240-c42e353f-132b-4cc3-8ec1-702907d00e6b"
+            }
+          ],
+          "createdAt": "2026-07-28T03:20:52.000Z",
+          "updatedAt": "2026-07-28T03:20:52.000Z",
+          "uid": "35240-2b1e5f32-b213-41de-aeae-d26bae996e09"
+        }
+      ],
+      "id": "0e22bf7b-88ed-4a76-b85d-a8d7f0c0cf65",
+      "createdAt": "2026-07-28T03:20:52.000Z",
+      "updatedAt": "2026-07-28T03:20:52.000Z",
+      "uid": "35240-0e22bf7b-88ed-4a76-b85d-a8d7f0c0cf65"
+    }
+  ],
+  "variable": [
+    {
+      "key": "turbonomic_host",
+      "value": "turbonomic.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{turbonomic_host}}/api/v3"
+    }
+  ]
+}

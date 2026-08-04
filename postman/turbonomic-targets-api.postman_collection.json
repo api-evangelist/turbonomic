@@ -1,0 +1,262 @@
+{
+  "info": {
+    "_postman_id": "6328e5c6-f46f-418e-a553-593083420b78",
+    "name": "Turbonomic REST Actions Targets API",
+    "description": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:20:53.000Z",
+    "updatedAt": "2026-07-28T03:20:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6328e5c6-f46f-418e-a553-593083420b78"
+  },
+  "item": [
+    {
+      "name": "targets",
+      "item": [
+        {
+          "name": "{uuid}",
+          "item": [
+            {
+              "name": "Get Target By UUID",
+              "id": "b91a712c-b023-4b49-8070-0ecb32521feb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/targets/:uuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "targets",
+                    ":uuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0cccec63-7037-4c35-b0f9-23014eefd354",
+                      "key": "uuid",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the target"
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific discovery target by its unique identifier."
+              },
+              "response": [
+                {
+                  "id": "fd065d36-8824-46b3-8a86-5f178be85197",
+                  "name": "Target details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/targets/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "targets",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"uuid\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"<string>\",\n  \"lastValidated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:20:53.000Z",
+                  "updatedAt": "2026-07-28T03:20:53.000Z",
+                  "uid": "35240-fd065d36-8824-46b3-8a86-5f178be85197"
+                },
+                {
+                  "id": "9e5e9c03-75a6-451b-baec-29c9adf378eb",
+                  "name": "Target not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/targets/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "targets",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:20:53.000Z",
+                  "updatedAt": "2026-07-28T03:20:53.000Z",
+                  "uid": "35240-9e5e9c03-75a6-451b-baec-29c9adf378eb"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:53.000Z",
+              "updatedAt": "2026-07-28T03:20:53.000Z",
+              "uid": "35240-b91a712c-b023-4b49-8070-0ecb32521feb"
+            }
+          ],
+          "id": "f33d8d2c-da4f-47f2-a991-42c9a82d643d",
+          "createdAt": "2026-07-28T03:20:53.000Z",
+          "updatedAt": "2026-07-28T03:20:53.000Z",
+          "uid": "35240-f33d8d2c-da4f-47f2-a991-42c9a82d643d"
+        },
+        {
+          "name": "Get All Targets",
+          "id": "2c54222d-bef4-4f98-b1d2-bfd19200d2fa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/targets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "targets"
+              ]
+            },
+            "description": "Retrieve all discovery targets configured in Turbonomic, including cloud accounts, hypervisors, container platforms, and monitoring systems."
+          },
+          "response": [
+            {
+              "id": "03f68fb5-9620-4e58-af39-b51da6cfdd9f",
+              "name": "List of targets",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/targets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "targets"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"type\": \"<string>\",\n    \"status\": \"<string>\",\n    \"lastValidated\": \"<dateTime>\"\n  },\n  {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"type\": \"<string>\",\n    \"status\": \"<string>\",\n    \"lastValidated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T03:20:53.000Z",
+              "updatedAt": "2026-07-28T03:20:53.000Z",
+              "uid": "35240-03f68fb5-9620-4e58-af39-b51da6cfdd9f"
+            }
+          ],
+          "createdAt": "2026-07-28T03:20:53.000Z",
+          "updatedAt": "2026-07-28T03:20:53.000Z",
+          "uid": "35240-2c54222d-bef4-4f98-b1d2-bfd19200d2fa"
+        }
+      ],
+      "id": "2ac91b91-e8a5-41b1-80b0-ba3bc2be206d",
+      "createdAt": "2026-07-28T03:20:53.000Z",
+      "updatedAt": "2026-07-28T03:20:53.000Z",
+      "uid": "35240-2ac91b91-e8a5-41b1-80b0-ba3bc2be206d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "turbonomic_host",
+      "value": "turbonomic.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{turbonomic_host}}/api/v3"
+    }
+  ]
+}

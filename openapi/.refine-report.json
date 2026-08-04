@@ -1,0 +1,32 @@
+{
+  "provider": "turbonomic",
+  "sources": [
+    "turbonomic-actions-api-openapi.yml",
+    "turbonomic-authentication-api-openapi.yml",
+    "turbonomic-entities-api-openapi.yml",
+    "turbonomic-groups-api-openapi.yml",
+    "turbonomic-markets-api-openapi.yml",
+    "turbonomic-policies-api-openapi.yml",
+    "turbonomic-statistics-api-openapi.yml",
+    "turbonomic-targets-api-openapi.yml",
+    "turbonomic-templates-api-openapi.yml",
+    "turbonomic-topology-api-openapi.yml"
+  ],
+  "outputs": [
+    "turbonomic-actions-api-openapi.yml",
+    "turbonomic-authentication-api-openapi.yml",
+    "turbonomic-entities-api-openapi.yml",
+    "turbonomic-groups-api-openapi.yml",
+    "turbonomic-markets-api-openapi.yml",
+    "turbonomic-policies-api-openapi.yml",
+    "turbonomic-statistics-api-openapi.yml",
+    "turbonomic-targets-api-openapi.yml",
+    "turbonomic-templates-api-openapi.yml",
+    "turbonomic-topology-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

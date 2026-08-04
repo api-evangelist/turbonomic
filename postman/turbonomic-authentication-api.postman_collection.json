@@ -1,0 +1,249 @@
+{
+  "info": {
+    "_postman_id": "04135491-9551-4131-8341-ce3674935fbb",
+    "name": "Turbonomic REST Actions Authentication API",
+    "description": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:20:47.000Z",
+    "updatedAt": "2026-07-28T03:20:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-04135491-9551-4131-8341-ce3674935fbb"
+  },
+  "item": [
+    {
+      "name": "login",
+      "item": [
+        {
+          "name": "Login to Turbonomic",
+          "id": "46dc25d0-dbcc-49fd-8a50-31dc7fdc64a9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Authenticate with the Turbonomic server and obtain a session token for subsequent API calls."
+          },
+          "response": [
+            {
+              "id": "fe819b27-e5ce-4201-ac4e-1947efcab3e1",
+              "name": "Login successful",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"token\": \"<string>\",\n  \"username\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T03:20:48.000Z",
+              "updatedAt": "2026-07-28T03:20:48.000Z",
+              "uid": "35240-fe819b27-e5ce-4201-ac4e-1947efcab3e1"
+            },
+            {
+              "id": "e6b027dd-9f83-46cc-aef2-1c792a2f7932",
+              "name": "Invalid credentials",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:20:48.000Z",
+              "updatedAt": "2026-07-28T03:20:48.000Z",
+              "uid": "35240-e6b027dd-9f83-46cc-aef2-1c792a2f7932"
+            }
+          ],
+          "createdAt": "2026-07-28T03:20:48.000Z",
+          "updatedAt": "2026-07-28T03:20:48.000Z",
+          "uid": "35240-46dc25d0-dbcc-49fd-8a50-31dc7fdc64a9"
+        }
+      ],
+      "id": "da5a3391-4ba2-4aa6-9f19-6148b8b78d80",
+      "createdAt": "2026-07-28T03:20:48.000Z",
+      "updatedAt": "2026-07-28T03:20:48.000Z",
+      "uid": "35240-da5a3391-4ba2-4aa6-9f19-6148b8b78d80"
+    },
+    {
+      "name": "logout",
+      "item": [
+        {
+          "name": "Logout from Turbonomic",
+          "id": "52f095fd-b661-48e9-b1ea-75e79486a5a2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "logout"
+              ]
+            },
+            "description": "Invalidate the current session token."
+          },
+          "response": [
+            {
+              "id": "a1c97719-84d6-4235-b077-6d99ba3fad35",
+              "name": "Logout successful",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logout"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:20:48.000Z",
+              "updatedAt": "2026-07-28T03:20:48.000Z",
+              "uid": "35240-a1c97719-84d6-4235-b077-6d99ba3fad35"
+            }
+          ],
+          "createdAt": "2026-07-28T03:20:48.000Z",
+          "updatedAt": "2026-07-28T03:20:48.000Z",
+          "uid": "35240-52f095fd-b661-48e9-b1ea-75e79486a5a2"
+        }
+      ],
+      "id": "71dadb82-a013-4cb9-871f-796a9e059a30",
+      "createdAt": "2026-07-28T03:20:48.000Z",
+      "updatedAt": "2026-07-28T03:20:48.000Z",
+      "uid": "35240-71dadb82-a013-4cb9-871f-796a9e059a30"
+    }
+  ],
+  "variable": [
+    {
+      "key": "turbonomic_host",
+      "value": "turbonomic.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{turbonomic_host}}/api/v3"
+    }
+  ]
+}

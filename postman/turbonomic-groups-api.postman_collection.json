@@ -1,0 +1,597 @@
+{
+  "info": {
+    "_postman_id": "e09d9151-47f5-4db8-9135-6318fa6ea8cb",
+    "name": "Turbonomic REST Actions Groups API",
+    "description": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:20:49.000Z",
+    "updatedAt": "2026-07-28T03:20:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e09d9151-47f5-4db8-9135-6318fa6ea8cb"
+  },
+  "item": [
+    {
+      "name": "groups",
+      "item": [
+        {
+          "name": "{uuid}",
+          "item": [
+            {
+              "name": "Get Group By UUID",
+              "id": "49f7e1ef-7174-464c-a10a-62c14d2e549d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/groups/:uuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups",
+                    ":uuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7d91f686-2c57-4ca8-ab66-6509b46cba2d",
+                      "key": "uuid",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the group"
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific entity group by its unique identifier."
+              },
+              "response": [
+                {
+                  "id": "ec930b9b-c544-43ca-a943-75c76dfb05be",
+                  "name": "Group details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"uuid\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"isStatic\": \"<boolean>\",\n  \"memberCount\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:20:50.000Z",
+                  "updatedAt": "2026-07-28T03:20:50.000Z",
+                  "uid": "35240-ec930b9b-c544-43ca-a943-75c76dfb05be"
+                },
+                {
+                  "id": "43228763-5623-4c93-9b3a-8676cf766e93",
+                  "name": "Group not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:20:50.000Z",
+                  "updatedAt": "2026-07-28T03:20:50.000Z",
+                  "uid": "35240-43228763-5623-4c93-9b3a-8676cf766e93"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:50.000Z",
+              "updatedAt": "2026-07-28T03:20:50.000Z",
+              "uid": "35240-49f7e1ef-7174-464c-a10a-62c14d2e549d"
+            },
+            {
+              "name": "Update Group",
+              "id": "fe83a59e-6aba-4c74-8479-a30fff3b59b4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"isStatic\": \"<boolean>\",\n  \"memberUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/groups/:uuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups",
+                    ":uuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c705f01c-ca83-43de-9bdc-0ff40c29cafc",
+                      "key": "uuid",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the group"
+                    }
+                  ]
+                },
+                "description": "Update an existing entity group."
+              },
+              "response": [
+                {
+                  "id": "741b22e9-d620-4a50-9d6d-381aebb2e2e5",
+                  "name": "Updated group",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"isStatic\": \"<boolean>\",\n  \"memberUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"uuid\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"isStatic\": \"<boolean>\",\n  \"memberCount\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:20:50.000Z",
+                  "updatedAt": "2026-07-28T03:20:50.000Z",
+                  "uid": "35240-741b22e9-d620-4a50-9d6d-381aebb2e2e5"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:50.000Z",
+              "updatedAt": "2026-07-28T03:20:50.000Z",
+              "uid": "35240-fe83a59e-6aba-4c74-8479-a30fff3b59b4"
+            },
+            {
+              "name": "Delete Group",
+              "id": "1a24fdb9-6720-4f8c-b8af-104b4ac4b74d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/groups/:uuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups",
+                    ":uuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d95d1e7e-4899-41ea-9ebd-bcda09e726a8",
+                      "key": "uuid",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the group"
+                    }
+                  ]
+                },
+                "description": "Delete an entity group."
+              },
+              "response": [
+                {
+                  "id": "357dc8a3-9c90-465b-8e45-67bca4a2cd33",
+                  "name": "Group deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:20:50.000Z",
+                  "updatedAt": "2026-07-28T03:20:50.000Z",
+                  "uid": "35240-357dc8a3-9c90-465b-8e45-67bca4a2cd33"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:50.000Z",
+              "updatedAt": "2026-07-28T03:20:50.000Z",
+              "uid": "35240-1a24fdb9-6720-4f8c-b8af-104b4ac4b74d"
+            }
+          ],
+          "id": "882d802a-8a3f-4fb4-ab57-c6eb98ad7f91",
+          "createdAt": "2026-07-28T03:20:50.000Z",
+          "updatedAt": "2026-07-28T03:20:50.000Z",
+          "uid": "35240-882d802a-8a3f-4fb4-ab57-c6eb98ad7f91"
+        },
+        {
+          "name": "Get All Groups",
+          "id": "48edf6b1-c594-4245-a12d-621c84a9a91f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/groups?group_type=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "groups"
+              ],
+              "query": [
+                {
+                  "description": "Filter by group type",
+                  "key": "group_type",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve all entity groups defined in the Turbonomic environment."
+          },
+          "response": [
+            {
+              "id": "2aab16d9-978c-44c3-b0b6-6aab8a5c5a90",
+              "name": "List of groups",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/groups?group_type=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by group type",
+                      "key": "group_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"groupType\": \"<string>\",\n    \"isStatic\": \"<boolean>\",\n    \"memberCount\": \"<integer>\"\n  },\n  {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"groupType\": \"<string>\",\n    \"isStatic\": \"<boolean>\",\n    \"memberCount\": \"<integer>\"\n  }\n]",
+              "createdAt": "2026-07-28T03:20:50.000Z",
+              "updatedAt": "2026-07-28T03:20:50.000Z",
+              "uid": "35240-2aab16d9-978c-44c3-b0b6-6aab8a5c5a90"
+            }
+          ],
+          "createdAt": "2026-07-28T03:20:50.000Z",
+          "updatedAt": "2026-07-28T03:20:50.000Z",
+          "uid": "35240-48edf6b1-c594-4245-a12d-621c84a9a91f"
+        },
+        {
+          "name": "Create Group",
+          "id": "b506414f-1a56-44ed-a43f-ecf65bcf2561",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"isStatic\": \"<boolean>\",\n  \"memberUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/groups",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "groups"
+              ]
+            },
+            "description": "Create a new entity group for scoped policy application and reporting."
+          },
+          "response": [
+            {
+              "id": "a7af3722-27d1-4387-a19a-d648e23c2cb9",
+              "name": "Created group",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"isStatic\": \"<boolean>\",\n  \"memberUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/groups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"uuid\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"isStatic\": \"<boolean>\",\n  \"memberCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:20:50.000Z",
+              "updatedAt": "2026-07-28T03:20:50.000Z",
+              "uid": "35240-a7af3722-27d1-4387-a19a-d648e23c2cb9"
+            }
+          ],
+          "createdAt": "2026-07-28T03:20:50.000Z",
+          "updatedAt": "2026-07-28T03:20:50.000Z",
+          "uid": "35240-b506414f-1a56-44ed-a43f-ecf65bcf2561"
+        }
+      ],
+      "id": "5631903d-c254-4980-a50d-300aa53cec20",
+      "createdAt": "2026-07-28T03:20:50.000Z",
+      "updatedAt": "2026-07-28T03:20:50.000Z",
+      "uid": "35240-5631903d-c254-4980-a50d-300aa53cec20"
+    }
+  ],
+  "variable": [
+    {
+      "key": "turbonomic_host",
+      "value": "turbonomic.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{turbonomic_host}}/api/v3"
+    }
+  ]
+}

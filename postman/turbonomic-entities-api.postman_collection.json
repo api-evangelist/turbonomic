@@ -1,0 +1,538 @@
+{
+  "info": {
+    "_postman_id": "1711c62c-5489-4d25-ba50-f7ac8f7eb4ab",
+    "name": "Turbonomic REST Actions Entities API",
+    "description": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:20:48.000Z",
+    "updatedAt": "2026-07-28T03:20:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1711c62c-5489-4d25-ba50-f7ac8f7eb4ab"
+  },
+  "item": [
+    {
+      "name": "entities",
+      "item": [
+        {
+          "name": "{uuid}",
+          "item": [
+            {
+              "name": "actions",
+              "item": [
+                {
+                  "name": "Get Entity Actions",
+                  "id": "80446ec6-772b-4ddd-a517-7b5fedbb59f9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:uuid/actions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":uuid",
+                        "actions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "954dd448-782f-4527-9b7d-308a83202ce1",
+                          "key": "uuid",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the entity"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve pending optimization actions for a specific entity."
+                  },
+                  "response": [
+                    {
+                      "id": "b575c6ee-7505-45e2-ba07-27a1c5d6f50b",
+                      "name": "List of actions for the entity",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/entities/:uuid/actions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "entities",
+                            ":uuid",
+                            "actions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"uuid\": \"<string>\",\n    \"actionType\": \"<string>\",\n    \"actionMode\": \"<string>\",\n    \"details\": \"<string>\",\n    \"importance\": \"<number>\",\n    \"severity\": \"<string>\",\n    \"state\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"target\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"risk\": {}\n  },\n  {\n    \"uuid\": \"<string>\",\n    \"actionType\": \"<string>\",\n    \"actionMode\": \"<string>\",\n    \"details\": \"<string>\",\n    \"importance\": \"<number>\",\n    \"severity\": \"<string>\",\n    \"state\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"target\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"className\": \"<string>\"\n    },\n    \"risk\": {}\n  }\n]",
+                      "createdAt": "2026-07-28T03:20:49.000Z",
+                      "updatedAt": "2026-07-28T03:20:49.000Z",
+                      "uid": "35240-b575c6ee-7505-45e2-ba07-27a1c5d6f50b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:20:49.000Z",
+                  "updatedAt": "2026-07-28T03:20:49.000Z",
+                  "uid": "35240-80446ec6-772b-4ddd-a517-7b5fedbb59f9"
+                }
+              ],
+              "id": "565d2b51-eabf-40d8-b097-bfbe8d3314f9",
+              "createdAt": "2026-07-28T03:20:49.000Z",
+              "updatedAt": "2026-07-28T03:20:49.000Z",
+              "uid": "35240-565d2b51-eabf-40d8-b097-bfbe8d3314f9"
+            },
+            {
+              "name": "stats",
+              "item": [
+                {
+                  "name": "Get Entity Statistics",
+                  "id": "a8a247fd-f350-4583-a676-04e062e9c219",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:uuid/stats?start_date=<dateTime>&end_date=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":uuid",
+                        "stats"
+                      ],
+                      "query": [
+                        {
+                          "description": "Start date for statistics (ISO 8601 format)",
+                          "key": "start_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "End date for statistics (ISO 8601 format)",
+                          "key": "end_date",
+                          "value": "<dateTime>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "da93b9cd-2fe7-40e9-85cf-64d28bf3ea92",
+                          "key": "uuid",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the entity"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve historical and projected resource utilization statistics for an entity."
+                  },
+                  "response": [
+                    {
+                      "id": "8bcd6124-5175-4d30-a3bf-8c6b83178163",
+                      "name": "Entity statistics",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/entities/:uuid/stats?start_date=<dateTime>&end_date=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "entities",
+                            ":uuid",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start date for statistics (ISO 8601 format)",
+                              "key": "start_date",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "End date for statistics (ISO 8601 format)",
+                              "key": "end_date",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"date\": \"<dateTime>\",\n    \"statistics\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"date\": \"<dateTime>\",\n    \"statistics\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<number>\",\n        \"units\": \"<string>\"\n      }\n    ]\n  }\n]",
+                      "createdAt": "2026-07-28T03:20:49.000Z",
+                      "updatedAt": "2026-07-28T03:20:49.000Z",
+                      "uid": "35240-8bcd6124-5175-4d30-a3bf-8c6b83178163"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:20:49.000Z",
+                  "updatedAt": "2026-07-28T03:20:49.000Z",
+                  "uid": "35240-a8a247fd-f350-4583-a676-04e062e9c219"
+                }
+              ],
+              "id": "5042cfe9-a5da-4463-b17e-bf1b27b998b9",
+              "createdAt": "2026-07-28T03:20:49.000Z",
+              "updatedAt": "2026-07-28T03:20:49.000Z",
+              "uid": "35240-5042cfe9-a5da-4463-b17e-bf1b27b998b9"
+            },
+            {
+              "name": "Get Entity By UUID",
+              "id": "f076205e-dbe8-4e1e-af01-ef7ea5cf8151",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities/:uuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities",
+                    ":uuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "49610e67-da34-46bc-ae33-d256b8198a2b",
+                      "key": "uuid",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the entity"
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific entity by its unique identifier."
+              },
+              "response": [
+                {
+                  "id": "a6b65d42-6595-4526-ac1e-7dfc3e70cbcd",
+                  "name": "Entity details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"uuid\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"className\": \"<string>\",\n  \"environmentType\": \"ON_PREM\",\n  \"state\": \"<string>\",\n  \"severityBreakdown\": {},\n  \"tags\": {\n    \"ine\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"est__\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T03:20:49.000Z",
+                  "updatedAt": "2026-07-28T03:20:49.000Z",
+                  "uid": "35240-a6b65d42-6595-4526-ac1e-7dfc3e70cbcd"
+                },
+                {
+                  "id": "b66a7727-a8b0-4043-b893-b0c527ca6b86",
+                  "name": "Entity not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:20:49.000Z",
+                  "updatedAt": "2026-07-28T03:20:49.000Z",
+                  "uid": "35240-b66a7727-a8b0-4043-b893-b0c527ca6b86"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:49.000Z",
+              "updatedAt": "2026-07-28T03:20:49.000Z",
+              "uid": "35240-f076205e-dbe8-4e1e-af01-ef7ea5cf8151"
+            }
+          ],
+          "id": "9811bfa8-676d-42d7-8871-d141208e3abf",
+          "createdAt": "2026-07-28T03:20:49.000Z",
+          "updatedAt": "2026-07-28T03:20:49.000Z",
+          "uid": "35240-9811bfa8-676d-42d7-8871-d141208e3abf"
+        },
+        {
+          "name": "Get All Entities",
+          "id": "5a86fd4d-1ec3-4f0e-9f90-b0238af4e367",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/entities?entity_type=<string>&limit=50&cursor=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "entities"
+              ],
+              "query": [
+                {
+                  "description": "Filter by entity type (e.g., VirtualMachine, Container, Application)",
+                  "key": "entity_type",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of entities to return",
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "description": "Pagination cursor for the next page of results",
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve all entities in the Turbonomic environment. Entities include virtual machines, containers, applications, storage volumes, hosts, and other infrastructure components."
+          },
+          "response": [
+            {
+              "id": "27446a42-017f-43a8-a73b-8da12f0b80ab",
+              "name": "List of entities",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities?entity_type=<string>&limit=50&cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by entity type (e.g., VirtualMachine, Container, Application)",
+                      "key": "entity_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of entities to return",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Pagination cursor for the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"className\": \"<string>\",\n    \"environmentType\": \"ON_PREM\",\n    \"state\": \"<string>\",\n    \"severityBreakdown\": {},\n    \"tags\": {\n      \"ipsum_b4\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  {\n    \"uuid\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"className\": \"<string>\",\n    \"environmentType\": \"HYBRID\",\n    \"state\": \"<string>\",\n    \"severityBreakdown\": {},\n    \"tags\": {\n      \"nostrud_37c\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n]",
+              "createdAt": "2026-07-28T03:20:49.000Z",
+              "updatedAt": "2026-07-28T03:20:49.000Z",
+              "uid": "35240-27446a42-017f-43a8-a73b-8da12f0b80ab"
+            }
+          ],
+          "createdAt": "2026-07-28T03:20:49.000Z",
+          "updatedAt": "2026-07-28T03:20:49.000Z",
+          "uid": "35240-5a86fd4d-1ec3-4f0e-9f90-b0238af4e367"
+        }
+      ],
+      "id": "25e0af75-608f-43df-83ee-14a6ad4243f2",
+      "createdAt": "2026-07-28T03:20:49.000Z",
+      "updatedAt": "2026-07-28T03:20:49.000Z",
+      "uid": "35240-25e0af75-608f-43df-83ee-14a6ad4243f2"
+    }
+  ],
+  "variable": [
+    {
+      "key": "turbonomic_host",
+      "value": "turbonomic.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{turbonomic_host}}/api/v3"
+    }
+  ]
+}
