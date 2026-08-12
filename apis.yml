@@ -283,7 +283,7 @@ common:
   - type: PrivacyPolicy
     url: https://www.ibm.com/privacy
   - type: OpenAPI
-    url: openapi/turbonomic-rest-api-openapi.yml
+    url: openapi/_original/turbonomic-rest-api-openapi.yml
   - type: KubernetesCRD
     url: crd/charts.helm.k8s.io_xls.yaml
   - type: Vocabulary
