@@ -1,0 +1,141 @@
+{
+  "item": [
+    {
+      "id": "62161457-a92b-4e20-8a65-d1303a65c7f3",
+      "name": "Topology",
+      "description": {
+        "content": "Explore infrastructure topology and supply chains",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58bccd4a-aabe-4d20-9ed3-6dca22c88776",
+          "name": "Get Topology Definitions",
+          "request": {
+            "name": "Get Topology Definitions",
+            "description": {
+              "content": "Retrieve topology definitions describing infrastructure relationships and supply chains.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topology"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "73315bd6-bc17-4cf8-83ea-65e11fa690dd",
+              "name": "Topology definitions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topology"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"description\": \"string\"\n  },\n  {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"description\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname or IP address of the Turbonomic server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "turbonomic.example.com",
+      "key": "turbonomic_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{turbonomic_host}}/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c28a4832-4cb5-45b2-99dd-a411d9c15d06",
+    "name": "Turbonomic REST Actions Topology API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+      "type": "text/plain"
+    }
+  }
+}

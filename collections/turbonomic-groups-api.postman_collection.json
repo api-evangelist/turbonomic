@@ -1,0 +1,687 @@
+{
+  "item": [
+    {
+      "id": "8a4d526d-ed6e-47c5-911b-ad3ddb5946f2",
+      "name": "Groups",
+      "description": {
+        "content": "Create and manage logical groups of entities",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5415dd97-7b37-4911-aede-eb1ae86acade",
+          "name": "Get All Groups",
+          "request": {
+            "name": "Get All Groups",
+            "description": {
+              "content": "Retrieve all entity groups defined in the Turbonomic environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "group_type",
+                  "value": "<string>",
+                  "description": "Filter by group type"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7852e6e1-c9fd-4c57-81c3-051f729a0fc5",
+              "name": "List of groups",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"groupType\": \"string\",\n    \"isStatic\": false,\n    \"memberCount\": 6530\n  },\n  {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"groupType\": \"string\",\n    \"isStatic\": true,\n    \"memberCount\": 9613\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd9120a3-7095-4dac-8e22-e56836df27d8",
+          "name": "Create Group",
+          "request": {
+            "name": "Create Group",
+            "description": {
+              "content": "Create a new entity group for scoped policy application and reporting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"isStatic\": \"<boolean>\",\n  \"memberUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"criteriaList\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a271a7cf-c377-450d-aaf1-3564f049e9b9",
+              "name": "Created group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"isStatic\": \"<boolean>\",\n  \"memberUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"criteriaList\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"displayName\": \"string\",\n  \"groupType\": \"string\",\n  \"isStatic\": true,\n  \"memberCount\": 8024\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d508526d-6abc-4293-8354-aaa888b16486",
+          "name": "Get Group By UUID",
+          "request": {
+            "name": "Get Group By UUID",
+            "description": {
+              "content": "Retrieve a specific entity group by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The unique identifier of the group"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eb1586d9-fd12-45e2-8e79-8e70289319dd",
+              "name": "Group details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the group"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"displayName\": \"string\",\n  \"groupType\": \"string\",\n  \"isStatic\": true,\n  \"memberCount\": 8024\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c60ddc5-4172-4508-aade-16fc710297f5",
+              "name": "Group not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the group"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "500640d2-3574-42cd-9032-6d623264b555",
+          "name": "Update Group",
+          "request": {
+            "name": "Update Group",
+            "description": {
+              "content": "Update an existing entity group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The unique identifier of the group"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"isStatic\": \"<boolean>\",\n  \"memberUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"criteriaList\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "caa42a15-e759-437b-aa5a-549eff762a28",
+              "name": "Updated group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the group"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"groupType\": \"<string>\",\n  \"isStatic\": \"<boolean>\",\n  \"memberUuids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"criteriaList\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"displayName\": \"string\",\n  \"groupType\": \"string\",\n  \"isStatic\": true,\n  \"memberCount\": 8024\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8472678-4c7a-4965-a745-21db840f2fa8",
+          "name": "Delete Group",
+          "request": {
+            "name": "Delete Group",
+            "description": {
+              "content": "Delete an entity group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The unique identifier of the group"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4a52a534-0690-4741-84ca-6a1dd5160eda",
+              "name": "Group deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the group"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname or IP address of the Turbonomic server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "turbonomic.example.com",
+      "key": "turbonomic_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{turbonomic_host}}/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "451894ed-428e-401e-9eb0-b4781b0fa8a3",
+    "name": "Turbonomic REST Actions Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+      "type": "text/plain"
+    }
+  }
+}

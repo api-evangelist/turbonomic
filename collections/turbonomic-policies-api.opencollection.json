@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Turbonomic REST Actions Policies API",
+    "version": "v3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/policies",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all automation and placement policies defined in Turbonomic."
+        },
+        {
+          "info": {
+            "name": "Create Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{turbonomic_host}/api/v3/policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new automation or placement policy."
+        },
+        {
+          "info": {
+            "name": "Get Policy By UUID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/policies/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the policy"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a specific policy by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Update Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{turbonomic_host}/api/v3/policies/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the policy"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing policy."
+        },
+        {
+          "info": {
+            "name": "Delete Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{turbonomic_host}/api/v3/policies/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the policy"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a policy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

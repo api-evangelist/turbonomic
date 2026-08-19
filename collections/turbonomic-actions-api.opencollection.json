@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Turbonomic REST Actions API",
+    "version": "v3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Entity Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/entities/:uuid/actions",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the entity"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve pending optimization actions for a specific entity."
+        },
+        {
+          "info": {
+            "name": "Get Market Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/markets/:uuid/actions",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Market UUID (use 'Market' for the realtime market)"
+              },
+              {
+                "name": "ascending",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for results"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all pending optimization actions for a market. By default, queries the realtime market (Market) for all pending actions."
+        },
+        {
+          "info": {
+            "name": "Get Action By UUID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/actions/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the action"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "If true, execute (accept) this action"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve details for a specific optimization action."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

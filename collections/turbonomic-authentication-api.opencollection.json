@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Turbonomic REST Actions Authentication API",
+    "version": "v3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Login to Turbonomic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{turbonomic_host}/api/v3/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticate with the Turbonomic server and obtain a session token for subsequent API calls."
+        },
+        {
+          "info": {
+            "name": "Logout from Turbonomic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{turbonomic_host}/api/v3/logout",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Invalidate the current session token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

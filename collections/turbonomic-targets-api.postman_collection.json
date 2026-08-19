@@ -1,0 +1,311 @@
+{
+  "item": [
+    {
+      "id": "35cede39-3e81-483f-ae43-438b3bb70bd6",
+      "name": "Targets",
+      "description": {
+        "content": "Manage discovery targets and integrations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a6be6a21-9af8-47f0-8085-8051ccdceb63",
+          "name": "Get All Targets",
+          "request": {
+            "name": "Get All Targets",
+            "description": {
+              "content": "Retrieve all discovery targets configured in Turbonomic, including cloud accounts, hypervisors, container platforms, and monitoring systems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "targets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "35d310b6-1937-4cda-8152-7e6b19bf9bf1",
+              "name": "List of targets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "targets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"type\": \"string\",\n    \"status\": \"string\",\n    \"lastValidated\": \"1997-06-22T04:26:54.857Z\"\n  },\n  {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"type\": \"string\",\n    \"status\": \"string\",\n    \"lastValidated\": \"2025-07-30T11:56:18.367Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "205c2bb2-e1a4-42b0-b2ec-ba988f396a6e",
+          "name": "Get Target By UUID",
+          "request": {
+            "name": "Get Target By UUID",
+            "description": {
+              "content": "Retrieve a specific discovery target by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "targets",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The unique identifier of the target"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4b800078-f297-4e4a-8f68-e31d438820ab",
+              "name": "Target details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "targets",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the target"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"displayName\": \"string\",\n  \"type\": \"string\",\n  \"status\": \"string\",\n  \"lastValidated\": \"1966-08-04T10:45:26.545Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "592e0402-88f1-4187-a091-b6c15aee1480",
+              "name": "Target not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "targets",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the target"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname or IP address of the Turbonomic server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "turbonomic.example.com",
+      "key": "turbonomic_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{turbonomic_host}}/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dda8061e-3ee6-4f92-aa2d-2006ae13b230",
+    "name": "Turbonomic REST Actions Targets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+      "type": "text/plain"
+    }
+  }
+}

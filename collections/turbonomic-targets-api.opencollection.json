@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Turbonomic REST Actions Targets API",
+    "version": "v3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Targets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Targets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/targets",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all discovery targets configured in Turbonomic, including cloud accounts, hypervisors, container platforms, and monitoring systems."
+        },
+        {
+          "info": {
+            "name": "Get Target By UUID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/targets/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the target"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a specific discovery target by its unique identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

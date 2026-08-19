@@ -1,0 +1,538 @@
+{
+  "item": [
+    {
+      "id": "54dee0ed-f1a6-4440-bc7a-f16b265a7bce",
+      "name": "Templates",
+      "description": {
+        "content": "Manage resource and hardware templates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "62aaf7dd-b96d-4774-bbae-e62d59285b11",
+          "name": "Get All Templates",
+          "request": {
+            "name": "Get All Templates",
+            "description": {
+              "content": "Retrieve all resource and hardware templates defined in Turbonomic.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9e09add2-aff8-4385-b66a-e29d2b474912",
+              "name": "List of templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"className\": \"string\",\n    \"price\": 1080.5964467808715\n  },\n  {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"className\": \"string\",\n    \"price\": 9605.424711575855\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbf7b907-45df-4b54-a303-d9a43b790ea5",
+          "name": "Create Template",
+          "request": {
+            "name": "Create Template",
+            "description": {
+              "content": "Create a new resource or hardware template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"className\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fb39cda6-6f6a-435d-9321-013c4375f731",
+              "name": "Created template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"className\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"displayName\": \"string\",\n  \"className\": \"string\",\n  \"price\": 5342.94918911459\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33b81275-3646-477e-b152-c63d8aa8502e",
+          "name": "Get Template By UUID",
+          "request": {
+            "name": "Get Template By UUID",
+            "description": {
+              "content": "Retrieve a specific template by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The unique identifier of the template"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9bd11b26-3248-4154-86b7-eee63fba9433",
+              "name": "Template details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the template"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"displayName\": \"string\",\n  \"className\": \"string\",\n  \"price\": 5342.94918911459\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "781521a9-c7ed-4798-bc3d-0b0302a105e9",
+              "name": "Template not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the template"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccc01225-06db-437f-bf0c-d6e79ec70d04",
+          "name": "Delete Template",
+          "request": {
+            "name": "Delete Template",
+            "description": {
+              "content": "Delete a template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The unique identifier of the template"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "85765632-0473-412d-91ce-1de4d79aac02",
+              "name": "Template deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the template"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname or IP address of the Turbonomic server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "turbonomic.example.com",
+      "key": "turbonomic_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{turbonomic_host}}/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b73e9b8c-0de9-41bb-8bba-c9320bfee58f",
+    "name": "Turbonomic REST Actions Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+      "type": "text/plain"
+    }
+  }
+}

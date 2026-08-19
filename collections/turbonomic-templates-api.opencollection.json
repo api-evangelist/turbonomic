@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Turbonomic REST Actions Templates API",
+    "version": "v3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/templates",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all resource and hardware templates defined in Turbonomic."
+        },
+        {
+          "info": {
+            "name": "Create Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{turbonomic_host}/api/v3/templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new resource or hardware template."
+        },
+        {
+          "info": {
+            "name": "Get Template By UUID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/templates/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the template"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a specific template by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Delete Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{turbonomic_host}/api/v3/templates/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the template"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a template."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

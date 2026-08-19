@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Turbonomic REST Actions Statistics API",
+    "version": "v3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Entity Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/entities/:uuid/stats",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the entity"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date for statistics (ISO 8601 format)"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date for statistics (ISO 8601 format)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve historical and projected resource utilization statistics for an entity."
+        },
+        {
+          "info": {
+            "name": "Get Market Action Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{turbonomic_host}/api/v3/markets/:uuid/actions/stats",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Market UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve aggregate statistics for actions in a market filtered by criteria."
+        },
+        {
+          "info": {
+            "name": "Get Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{turbonomic_host}/api/v3/stats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve aggregated statistics for entities matching the specified criteria."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

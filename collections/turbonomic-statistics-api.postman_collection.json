@@ -1,0 +1,443 @@
+{
+  "item": [
+    {
+      "id": "fbe41e4e-a5bc-4ecd-8eab-7b2b81c91669",
+      "name": "Statistics",
+      "description": {
+        "content": "Retrieve historical and projected resource statistics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e334b658-9bad-4617-a955-51b18e4902eb",
+          "name": "Get Entity Statistics",
+          "request": {
+            "name": "Get Entity Statistics",
+            "description": {
+              "content": "Retrieve historical and projected resource utilization statistics for an entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities",
+                ":uuid",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<dateTime>",
+                  "description": "Start date for statistics (ISO 8601 format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<dateTime>",
+                  "description": "End date for statistics (ISO 8601 format)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The unique identifier of the entity"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7bb1a7c3-1678-4ad3-bee0-8fde74b9d5de",
+              "name": "Entity statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":uuid",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the entity"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"2006-04-09T23:41:12.528Z\",\n    \"statistics\": [\n      {\n        \"name\": \"string\",\n        \"value\": 3983.7272728675766,\n        \"units\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": 5393.842674534692,\n        \"units\": \"string\"\n      }\n    ]\n  },\n  {\n    \"date\": \"1975-03-03T00:33:51.580Z\",\n    \"statistics\": [\n      {\n        \"name\": \"string\",\n        \"value\": 1781.5873177808628,\n        \"units\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": 538.1794630294156,\n        \"units\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33d57ae9-b4c9-415d-bfac-d96446f8ba6f",
+          "name": "Get Market Action Statistics",
+          "request": {
+            "name": "Get Market Action Statistics",
+            "description": {
+              "content": "Retrieve aggregate statistics for actions in a market filtered by criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "markets",
+                ":uuid",
+                "actions",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Market UUID"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"actionModeList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actionTypeList\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3fa57b87-0bc5-49ae-8b67-cb31bbfdcbbf",
+              "name": "Action statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "markets",
+                    ":uuid",
+                    "actions",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Market UUID"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"actionModeList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actionTypeList\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"2006-04-09T23:41:12.528Z\",\n    \"statistics\": [\n      {\n        \"name\": \"string\",\n        \"value\": 3983.7272728675766,\n        \"units\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": 5393.842674534692,\n        \"units\": \"string\"\n      }\n    ]\n  },\n  {\n    \"date\": \"1975-03-03T00:33:51.580Z\",\n    \"statistics\": [\n      {\n        \"name\": \"string\",\n        \"value\": 1781.5873177808628,\n        \"units\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": 538.1794630294156,\n        \"units\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "916c52a6-1f9d-4b15-949f-95332901cf94",
+          "name": "Get Statistics",
+          "request": {
+            "name": "Get Statistics",
+            "description": {
+              "content": "Retrieve aggregated statistics for entities matching the specified criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"statistics\": [\n    {\n      \"name\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\"\n    }\n  ],\n  \"period\": {\n    \"startDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b725a292-23b4-4956-8648-0309595a0e0c",
+              "name": "Statistics results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statistics\": [\n    {\n      \"name\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\"\n    }\n  ],\n  \"period\": {\n    \"startDate\": \"<dateTime>\",\n    \"endDate\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"2006-04-09T23:41:12.528Z\",\n    \"statistics\": [\n      {\n        \"name\": \"string\",\n        \"value\": 3983.7272728675766,\n        \"units\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": 5393.842674534692,\n        \"units\": \"string\"\n      }\n    ]\n  },\n  {\n    \"date\": \"1975-03-03T00:33:51.580Z\",\n    \"statistics\": [\n      {\n        \"name\": \"string\",\n        \"value\": 1781.5873177808628,\n        \"units\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": 538.1794630294156,\n        \"units\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname or IP address of the Turbonomic server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "turbonomic.example.com",
+      "key": "turbonomic_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{turbonomic_host}}/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cd79d9e7-f0c5-4d88-bc11-65559b6f3a7f",
+    "name": "Turbonomic REST Actions Statistics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+      "type": "text/plain"
+    }
+  }
+}

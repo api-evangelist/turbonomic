@@ -1,0 +1,476 @@
+{
+  "item": [
+    {
+      "id": "cfa45388-9e7d-4eb4-aa0a-7ec924cc4bbc",
+      "name": "Actions",
+      "description": {
+        "content": "Retrieve, accept, and reject optimization actions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b434e9c-1134-493f-b180-7cb1ab920ca9",
+          "name": "Get Entity Actions",
+          "request": {
+            "name": "Get Entity Actions",
+            "description": {
+              "content": "Retrieve pending optimization actions for a specific entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "entities",
+                ":uuid",
+                "actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The unique identifier of the entity"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c2d6553e-106d-491f-85ad-7e33874903c5",
+              "name": "List of actions for the entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "entities",
+                    ":uuid",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the entity"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uuid\": \"string\",\n    \"actionType\": \"string\",\n    \"actionMode\": \"string\",\n    \"details\": \"string\",\n    \"importance\": 6935.308748625719,\n    \"severity\": \"string\",\n    \"state\": \"string\",\n    \"createTime\": \"1947-12-05T15:31:13.917Z\",\n    \"target\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"risk\": {}\n  },\n  {\n    \"uuid\": \"string\",\n    \"actionType\": \"string\",\n    \"actionMode\": \"string\",\n    \"details\": \"string\",\n    \"importance\": 719.6827152016227,\n    \"severity\": \"string\",\n    \"state\": \"string\",\n    \"createTime\": \"1954-07-18T18:39:11.575Z\",\n    \"target\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"risk\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa318929-a519-4271-8164-3dcca91c9296",
+          "name": "Get Market Actions",
+          "request": {
+            "name": "Get Market Actions",
+            "description": {
+              "content": "Retrieve all pending optimization actions for a market. By default, queries the realtime market (Market) for all pending actions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "markets",
+                ":uuid",
+                "actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ascending",
+                  "value": "false",
+                  "description": "Sort order for results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Market UUID (use 'Market' for the realtime market)"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b76831af-91f6-46aa-a2e7-65e113dd8de1",
+              "name": "List of actions in the market",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "markets",
+                    ":uuid",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ascending",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Market UUID (use 'Market' for the realtime market)"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uuid\": \"string\",\n    \"actionType\": \"string\",\n    \"actionMode\": \"string\",\n    \"details\": \"string\",\n    \"importance\": 6935.308748625719,\n    \"severity\": \"string\",\n    \"state\": \"string\",\n    \"createTime\": \"1947-12-05T15:31:13.917Z\",\n    \"target\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"risk\": {}\n  },\n  {\n    \"uuid\": \"string\",\n    \"actionType\": \"string\",\n    \"actionMode\": \"string\",\n    \"details\": \"string\",\n    \"importance\": 719.6827152016227,\n    \"severity\": \"string\",\n    \"state\": \"string\",\n    \"createTime\": \"1954-07-18T18:39:11.575Z\",\n    \"target\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"risk\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4e87e33-4900-4301-b4ae-5cc1da12ac0f",
+          "name": "Get Action By UUID",
+          "request": {
+            "name": "Get Action By UUID",
+            "description": {
+              "content": "Retrieve details for a specific optimization action.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "actions",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accept",
+                  "value": "<boolean>",
+                  "description": "If true, execute (accept) this action"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The unique identifier of the action"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "aafb467e-f523-405e-b3ff-42c81c066bdd",
+              "name": "Action details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "actions",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accept",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the action"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"actionType\": \"string\",\n  \"actionMode\": \"string\",\n  \"details\": \"string\",\n  \"importance\": 7682.0439941137765,\n  \"severity\": \"string\",\n  \"state\": \"string\",\n  \"createTime\": \"2015-04-20T06:12:23.485Z\",\n  \"target\": {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"className\": \"string\"\n  },\n  \"newEntity\": {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"className\": \"string\"\n  },\n  \"currentEntity\": {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"className\": \"string\"\n  },\n  \"risk\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09de1be5-8678-4d86-839c-6e921a0aaaca",
+              "name": "Action not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "actions",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accept",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the action"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname or IP address of the Turbonomic server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "turbonomic.example.com",
+      "key": "turbonomic_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{turbonomic_host}}/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "98d181f1-47d1-4447-a5bb-11eb8e8cd311",
+    "name": "Turbonomic REST Actions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+      "type": "text/plain"
+    }
+  }
+}

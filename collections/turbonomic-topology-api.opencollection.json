@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Turbonomic REST Actions Topology API",
+    "version": "v3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Topology",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Topology Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/topology",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve topology definitions describing infrastructure relationships and supply chains."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

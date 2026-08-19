@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Turbonomic REST Actions Markets API",
+    "version": "v3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Markets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Markets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/markets",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all Turbonomic markets. Markets represent simulation scenarios used to project the state of the environment and evaluate optimization actions."
+        },
+        {
+          "info": {
+            "name": "Get Market Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{turbonomic_host}/api/v3/markets/:uuid/actions",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Market UUID (use 'Market' for the realtime market)"
+              },
+              {
+                "name": "ascending",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for results"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all pending optimization actions for a market. By default, queries the realtime market (Market) for all pending actions."
+        },
+        {
+          "info": {
+            "name": "Get Market Action Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{turbonomic_host}/api/v3/markets/:uuid/actions/stats",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Market UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve aggregate statistics for actions in a market filtered by criteria."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

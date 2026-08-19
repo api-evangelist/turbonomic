@@ -1,0 +1,412 @@
+{
+  "item": [
+    {
+      "id": "0a211333-b577-4c00-a69c-c48dde9e219d",
+      "name": "Markets",
+      "description": {
+        "content": "Access Turbonomic markets and projected states",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c99290c6-5230-44af-bc52-05632865cecd",
+          "name": "Get All Markets",
+          "request": {
+            "name": "Get All Markets",
+            "description": {
+              "content": "Retrieve all Turbonomic markets. Markets represent simulation scenarios used to project the state of the environment and evaluate optimization actions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "markets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "89ee6584-1381-464d-8d27-231eac3d9c71",
+              "name": "List of markets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "markets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"state\": \"string\",\n    \"type\": \"string\"\n  },\n  {\n    \"uuid\": \"string\",\n    \"displayName\": \"string\",\n    \"state\": \"string\",\n    \"type\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6079d33-2bae-49b8-b257-2915df389221",
+          "name": "Get Market Actions",
+          "request": {
+            "name": "Get Market Actions",
+            "description": {
+              "content": "Retrieve all pending optimization actions for a market. By default, queries the realtime market (Market) for all pending actions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "markets",
+                ":uuid",
+                "actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ascending",
+                  "value": "false",
+                  "description": "Sort order for results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Market UUID (use 'Market' for the realtime market)"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cd0e0709-5090-4679-b491-7e5470a324f1",
+              "name": "List of actions in the market",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "markets",
+                    ":uuid",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ascending",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Market UUID (use 'Market' for the realtime market)"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uuid\": \"string\",\n    \"actionType\": \"string\",\n    \"actionMode\": \"string\",\n    \"details\": \"string\",\n    \"importance\": 361.9748087659924,\n    \"severity\": \"string\",\n    \"state\": \"string\",\n    \"createTime\": \"2015-05-09T17:57:55.849Z\",\n    \"target\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"risk\": {}\n  },\n  {\n    \"uuid\": \"string\",\n    \"actionType\": \"string\",\n    \"actionMode\": \"string\",\n    \"details\": \"string\",\n    \"importance\": 3545.641981841542,\n    \"severity\": \"string\",\n    \"state\": \"string\",\n    \"createTime\": \"2019-03-02T01:51:37.311Z\",\n    \"target\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"newEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"currentEntity\": {\n      \"uuid\": \"string\",\n      \"displayName\": \"string\",\n      \"className\": \"string\"\n    },\n    \"risk\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a410cf9-bfab-4a76-808b-b7bd8da944a8",
+          "name": "Get Market Action Statistics",
+          "request": {
+            "name": "Get Market Action Statistics",
+            "description": {
+              "content": "Retrieve aggregate statistics for actions in a market filtered by criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "markets",
+                ":uuid",
+                "actions",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Market UUID"
+                },
+                {
+                  "description": "The hostname or IP address of the Turbonomic server",
+                  "type": "any",
+                  "value": "{{turbonomic_host}}",
+                  "key": "turbonomic_host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"actionModeList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actionTypeList\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cd1a0411-84a9-4ada-8427-691a5da3455f",
+              "name": "Action statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "markets",
+                    ":uuid",
+                    "actions",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Market UUID"
+                    },
+                    {
+                      "description": "The hostname or IP address of the Turbonomic server",
+                      "type": "any",
+                      "value": "{{turbonomic_host}}",
+                      "key": "turbonomic_host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"actionModeList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actionTypeList\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"1994-01-29T11:53:58.980Z\",\n    \"statistics\": [\n      {\n        \"name\": \"string\",\n        \"value\": 990.2713774843796,\n        \"units\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": 5290.380662987126,\n        \"units\": \"string\"\n      }\n    ]\n  },\n  {\n    \"date\": \"2011-12-29T18:24:53.010Z\",\n    \"statistics\": [\n      {\n        \"name\": \"string\",\n        \"value\": 8020.839730072374,\n        \"units\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"value\": 8503.557294735729,\n        \"units\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname or IP address of the Turbonomic server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "turbonomic.example.com",
+      "key": "turbonomic_host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{turbonomic_host}}/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "30f428f8-5d33-4cee-97d9-9e06c461b5af",
+    "name": "Turbonomic REST Actions Markets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.\n\nContact Support:\n Name: IBM Turbonomic Support",
+      "type": "text/plain"
+    }
+  }
+}
