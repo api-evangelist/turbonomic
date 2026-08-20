@@ -104,6 +104,8 @@ apis:
   humanURL: https://www.ibm.com/docs/en/tarm/8.19.3?topic=reference-turbonomic-rest-api-endpoints
   baseURL: https://{turbonomic_host}/api/v3
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
