@@ -5,6 +5,18 @@ description: IBM Turbonomic is an Application Resource Management (ARM) platform
   Turbonomic provides a comprehensive REST API enabling programmatic access to resource management data, workload
   actions, markets, policies, groups, templates, and topology information. The platform integrates with AWS, Azure,
   GCP, Kubernetes, VMware, and dozens of APM and ITSM tools.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
