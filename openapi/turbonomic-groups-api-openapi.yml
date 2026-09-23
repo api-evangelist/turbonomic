@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Turbonomic REST Actions Groups API
+  title: Turbonomic REST Groups API
   description: The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.
   version: v3
   contact:
@@ -138,25 +138,6 @@ paths:
           description: Group deleted successfully
 components:
   schemas:
-    Group:
-      type: object
-      description: A logical group of entities in Turbonomic
-      properties:
-        uuid:
-          type: string
-          description: Unique identifier of the group
-        displayName:
-          type: string
-          description: Human-readable name of the group
-        groupType:
-          type: string
-          description: Type of entities in this group
-        isStatic:
-          type: boolean
-          description: If true, the group has a fixed membership list
-        memberCount:
-          type: integer
-          description: Number of entities in the group
     GroupInput:
       type: object
       description: Input for creating or updating a group
@@ -183,6 +164,25 @@ components:
           items:
             type: object
           description: For dynamic groups, the filter criteria
+    Group:
+      type: object
+      description: A logical group of entities in Turbonomic
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the group
+        displayName:
+          type: string
+          description: Human-readable name of the group
+        groupType:
+          type: string
+          description: Type of entities in this group
+        isStatic:
+          type: boolean
+          description: If true, the group has a fixed membership list
+        memberCount:
+          type: integer
+          description: Number of entities in the group
   securitySchemes:
     bearerAuth:
       type: http

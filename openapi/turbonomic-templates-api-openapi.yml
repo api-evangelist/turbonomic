@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Turbonomic REST Actions Templates API
+  title: Turbonomic REST Templates API
   description: The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.
   version: v3
   contact:
@@ -104,19 +104,6 @@ paths:
           description: Template deleted successfully
 components:
   schemas:
-    TemplateInput:
-      type: object
-      description: Input for creating or updating a template
-      required:
-      - displayName
-      - className
-      properties:
-        displayName:
-          type: string
-          description: Human-readable name of the template
-        className:
-          type: string
-          description: Entity type this template applies to
     Template:
       type: object
       description: A resource or hardware template in Turbonomic
@@ -133,6 +120,19 @@ components:
         price:
           type: number
           description: Cost associated with this template
+    TemplateInput:
+      type: object
+      description: Input for creating or updating a template
+      required:
+      - displayName
+      - className
+      properties:
+        displayName:
+          type: string
+          description: Human-readable name of the template
+        className:
+          type: string
+          description: Entity type this template applies to
   securitySchemes:
     bearerAuth:
       type: http

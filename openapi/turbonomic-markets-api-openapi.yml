@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Turbonomic REST Actions Markets API
+  title: Turbonomic REST Markets API
   description: The IBM Turbonomic REST API provides programmatic access to the Turbonomic Application Resource Management (ARM) platform. It enables automation of resource optimization actions, querying of entities (VMs, containers, applications, storage), management of markets and policies, retrieval of statistics and analytics, group management, template administration, and topology exploration across hybrid cloud environments.
   version: v3
   contact:
@@ -101,71 +101,6 @@ paths:
                   $ref: '#/components/schemas/StatSnapshot'
 components:
   schemas:
-    Market:
-      type: object
-      description: A Turbonomic market (real-time or plan scenario)
-      properties:
-        uuid:
-          type: string
-          description: Unique identifier of the market
-        displayName:
-          type: string
-          description: Human-readable name (e.g., 'Market' for real-time)
-        state:
-          type: string
-          description: Current state of the market
-        type:
-          type: string
-          description: Market type (REALTIME, PLAN)
-    StatSnapshot:
-      type: object
-      description: A statistical snapshot for a resource metric
-      properties:
-        date:
-          type: string
-          format: date-time
-          description: Timestamp of the statistic
-        statistics:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the statistic (e.g., CPU, Mem, StorageAmount)
-              value:
-                type: number
-                description: Metric value
-              units:
-                type: string
-                description: Units for the value
-    ActionFilter:
-      type: object
-      description: Filter criteria for retrieving action statistics
-      properties:
-        actionModeList:
-          type: array
-          items:
-            type: string
-          description: Filter by action modes
-        actionTypeList:
-          type: array
-          items:
-            type: string
-          description: Filter by action types
-    EntityRef:
-      type: object
-      description: A reference to an entity
-      properties:
-        uuid:
-          type: string
-          description: Entity UUID
-        displayName:
-          type: string
-          description: Entity display name
-        className:
-          type: string
-          description: Entity type
     Action:
       type: object
       description: An optimization action recommended by Turbonomic
@@ -204,6 +139,71 @@ components:
         risk:
           type: object
           description: Risk assessment for this action
+    ActionFilter:
+      type: object
+      description: Filter criteria for retrieving action statistics
+      properties:
+        actionModeList:
+          type: array
+          items:
+            type: string
+          description: Filter by action modes
+        actionTypeList:
+          type: array
+          items:
+            type: string
+          description: Filter by action types
+    Market:
+      type: object
+      description: A Turbonomic market (real-time or plan scenario)
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the market
+        displayName:
+          type: string
+          description: Human-readable name (e.g., 'Market' for real-time)
+        state:
+          type: string
+          description: Current state of the market
+        type:
+          type: string
+          description: Market type (REALTIME, PLAN)
+    EntityRef:
+      type: object
+      description: A reference to an entity
+      properties:
+        uuid:
+          type: string
+          description: Entity UUID
+        displayName:
+          type: string
+          description: Entity display name
+        className:
+          type: string
+          description: Entity type
+    StatSnapshot:
+      type: object
+      description: A statistical snapshot for a resource metric
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: Timestamp of the statistic
+        statistics:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the statistic (e.g., CPU, Mem, StorageAmount)
+              value:
+                type: number
+                description: Metric value
+              units:
+                type: string
+                description: Units for the value
   securitySchemes:
     bearerAuth:
       type: http

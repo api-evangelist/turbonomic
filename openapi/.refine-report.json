@@ -1,16 +1,7 @@
 {
   "provider": "turbonomic",
   "sources": [
-    "turbonomic-actions-api-openapi.yml",
-    "turbonomic-authentication-api-openapi.yml",
-    "turbonomic-entities-api-openapi.yml",
-    "turbonomic-groups-api-openapi.yml",
-    "turbonomic-markets-api-openapi.yml",
-    "turbonomic-policies-api-openapi.yml",
-    "turbonomic-statistics-api-openapi.yml",
-    "turbonomic-targets-api-openapi.yml",
-    "turbonomic-templates-api-openapi.yml",
-    "turbonomic-topology-api-openapi.yml"
+    "_original/turbonomic-rest-api-openapi.yml"
   ],
   "outputs": [
     "turbonomic-actions-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "turbonomic-rest-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "turbonomic-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "turbonomic-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "turbonomic-entities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "turbonomic-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "turbonomic-markets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "turbonomic-policies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "turbonomic-statistics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "turbonomic-targets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "turbonomic-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "turbonomic-topology-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
