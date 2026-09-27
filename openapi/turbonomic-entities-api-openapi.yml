@@ -144,28 +144,6 @@ paths:
                   $ref: '#/components/schemas/StatSnapshot'
 components:
   schemas:
-    StatSnapshot:
-      type: object
-      description: A statistical snapshot for a resource metric
-      properties:
-        date:
-          type: string
-          format: date-time
-          description: Timestamp of the statistic
-        statistics:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the statistic (e.g., CPU, Mem, StorageAmount)
-              value:
-                type: number
-                description: Metric value
-              units:
-                type: string
-                description: Units for the value
     Entity:
       type: object
       description: A managed entity in the Turbonomic environment
@@ -199,6 +177,28 @@ components:
             type: array
             items:
               type: string
+    StatSnapshot:
+      type: object
+      description: A statistical snapshot for a resource metric
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: Timestamp of the statistic
+        statistics:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the statistic (e.g., CPU, Mem, StorageAmount)
+              value:
+                type: number
+                description: Metric value
+              units:
+                type: string
+                description: Units for the value
     Action:
       type: object
       description: An optimization action recommended by Turbonomic

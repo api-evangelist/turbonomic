@@ -113,6 +113,27 @@ paths:
                   $ref: '#/components/schemas/StatSnapshot'
 components:
   schemas:
+    StatFilter:
+      type: object
+      description: Filter criteria for retrieving statistics
+      properties:
+        statistics:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Statistic name to retrieve
+        period:
+          type: object
+          properties:
+            startDate:
+              type: string
+              format: date-time
+            endDate:
+              type: string
+              format: date-time
     StatSnapshot:
       type: object
       description: A statistical snapshot for a resource metric
@@ -149,27 +170,6 @@ components:
           items:
             type: string
           description: Filter by action types
-    StatFilter:
-      type: object
-      description: Filter criteria for retrieving statistics
-      properties:
-        statistics:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Statistic name to retrieve
-        period:
-          type: object
-          properties:
-            startDate:
-              type: string
-              format: date-time
-            endDate:
-              type: string
-              format: date-time
   securitySchemes:
     bearerAuth:
       type: http
