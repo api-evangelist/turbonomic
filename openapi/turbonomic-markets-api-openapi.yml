@@ -101,44 +101,19 @@ paths:
                   $ref: '#/components/schemas/StatSnapshot'
 components:
   schemas:
-    StatSnapshot:
+    EntityRef:
       type: object
-      description: A statistical snapshot for a resource metric
-      properties:
-        date:
-          type: string
-          format: date-time
-          description: Timestamp of the statistic
-        statistics:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the statistic (e.g., CPU, Mem, StorageAmount)
-              value:
-                type: number
-                description: Metric value
-              units:
-                type: string
-                description: Units for the value
-    Market:
-      type: object
-      description: A Turbonomic market (real-time or plan scenario)
+      description: A reference to an entity
       properties:
         uuid:
           type: string
-          description: Unique identifier of the market
+          description: Entity UUID
         displayName:
           type: string
-          description: Human-readable name (e.g., 'Market' for real-time)
-        state:
+          description: Entity display name
+        className:
           type: string
-          description: Current state of the market
-        type:
-          type: string
-          description: Market type (REALTIME, PLAN)
+          description: Entity type
     Action:
       type: object
       description: An optimization action recommended by Turbonomic
@@ -177,6 +152,44 @@ components:
         risk:
           type: object
           description: Risk assessment for this action
+    StatSnapshot:
+      type: object
+      description: A statistical snapshot for a resource metric
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: Timestamp of the statistic
+        statistics:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the statistic (e.g., CPU, Mem, StorageAmount)
+              value:
+                type: number
+                description: Metric value
+              units:
+                type: string
+                description: Units for the value
+    Market:
+      type: object
+      description: A Turbonomic market (real-time or plan scenario)
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the market
+        displayName:
+          type: string
+          description: Human-readable name (e.g., 'Market' for real-time)
+        state:
+          type: string
+          description: Current state of the market
+        type:
+          type: string
+          description: Market type (REALTIME, PLAN)
     ActionFilter:
       type: object
       description: Filter criteria for retrieving action statistics
@@ -191,19 +204,6 @@ components:
           items:
             type: string
           description: Filter by action types
-    EntityRef:
-      type: object
-      description: A reference to an entity
-      properties:
-        uuid:
-          type: string
-          description: Entity UUID
-        displayName:
-          type: string
-          description: Entity display name
-        className:
-          type: string
-          description: Entity type
   securitySchemes:
     bearerAuth:
       type: http

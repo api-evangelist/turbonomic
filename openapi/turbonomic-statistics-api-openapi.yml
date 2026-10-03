@@ -113,6 +113,20 @@ paths:
                   $ref: '#/components/schemas/StatSnapshot'
 components:
   schemas:
+    ActionFilter:
+      type: object
+      description: Filter criteria for retrieving action statistics
+      properties:
+        actionModeList:
+          type: array
+          items:
+            type: string
+          description: Filter by action modes
+        actionTypeList:
+          type: array
+          items:
+            type: string
+          description: Filter by action types
     StatFilter:
       type: object
       description: Filter criteria for retrieving statistics
@@ -156,20 +170,6 @@ components:
               units:
                 type: string
                 description: Units for the value
-    ActionFilter:
-      type: object
-      description: Filter criteria for retrieving action statistics
-      properties:
-        actionModeList:
-          type: array
-          items:
-            type: string
-          description: Filter by action modes
-        actionTypeList:
-          type: array
-          items:
-            type: string
-          description: Filter by action types
   securitySchemes:
     bearerAuth:
       type: http
