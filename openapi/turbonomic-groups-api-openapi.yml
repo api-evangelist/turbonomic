@@ -138,6 +138,25 @@ paths:
           description: Group deleted successfully
 components:
   schemas:
+    Group:
+      type: object
+      description: A logical group of entities in Turbonomic
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the group
+        displayName:
+          type: string
+          description: Human-readable name of the group
+        groupType:
+          type: string
+          description: Type of entities in this group
+        isStatic:
+          type: boolean
+          description: If true, the group has a fixed membership list
+        memberCount:
+          type: integer
+          description: Number of entities in the group
     GroupInput:
       type: object
       description: Input for creating or updating a group
@@ -164,25 +183,6 @@ components:
           items:
             type: object
           description: For dynamic groups, the filter criteria
-    Group:
-      type: object
-      description: A logical group of entities in Turbonomic
-      properties:
-        uuid:
-          type: string
-          description: Unique identifier of the group
-        displayName:
-          type: string
-          description: Human-readable name of the group
-        groupType:
-          type: string
-          description: Type of entities in this group
-        isStatic:
-          type: boolean
-          description: If true, the group has a fixed membership list
-        memberCount:
-          type: integer
-          description: Number of entities in the group
   securitySchemes:
     bearerAuth:
       type: http

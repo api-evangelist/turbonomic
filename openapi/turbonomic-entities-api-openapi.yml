@@ -166,6 +166,19 @@ components:
               units:
                 type: string
                 description: Units for the value
+    EntityRef:
+      type: object
+      description: A reference to an entity
+      properties:
+        uuid:
+          type: string
+          description: Entity UUID
+        displayName:
+          type: string
+          description: Entity display name
+        className:
+          type: string
+          description: Entity type
     Action:
       type: object
       description: An optimization action recommended by Turbonomic
@@ -237,19 +250,6 @@ components:
             type: array
             items:
               type: string
-    EntityRef:
-      type: object
-      description: A reference to an entity
-      properties:
-        uuid:
-          type: string
-          description: Entity UUID
-        displayName:
-          type: string
-          description: Entity display name
-        className:
-          type: string
-          description: Entity type
   securitySchemes:
     bearerAuth:
       type: http
