@@ -1,0 +1,25 @@
+slug: turbonomic
+provider: IBM Turbonomic
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Actions
+  spec_file: turbonomic-actions-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.72
+  evidence: '"Get Entity Actions" / "automation of resource optimization actions" across "entities (VMs,
+    containers, applications, storage)"'
+  reason: The Actions surface exposes recommended/executable resource-optimization actions on IT infrastructure
+    entities, which is day-to-day IT operations automation rather than any business-domain action.

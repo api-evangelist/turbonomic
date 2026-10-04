@@ -250,6 +250,9 @@ apis:
   - type: KubernetesCRD
     url: crd/charts.helm.k8s.io_xls.yaml
 common:
+- type: CapabilityMap
+  url: capabilities/turbonomic-capability-edges.yml
+  name: IBM Turbonomic Business Capability Map
 - type: ParentCompany
   url: https://apis.io/providers/ibm/
   name: Ibm
