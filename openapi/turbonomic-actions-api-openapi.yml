@@ -108,6 +108,19 @@ paths:
           description: Action not found
 components:
   schemas:
+    EntityRef:
+      type: object
+      description: A reference to an entity
+      properties:
+        uuid:
+          type: string
+          description: Entity UUID
+        displayName:
+          type: string
+          description: Entity display name
+        className:
+          type: string
+          description: Entity type
     Action:
       type: object
       description: An optimization action recommended by Turbonomic
@@ -146,19 +159,6 @@ components:
         risk:
           type: object
           description: Risk assessment for this action
-    EntityRef:
-      type: object
-      description: A reference to an entity
-      properties:
-        uuid:
-          type: string
-          description: Entity UUID
-        displayName:
-          type: string
-          description: Entity display name
-        className:
-          type: string
-          description: Entity type
   securitySchemes:
     bearerAuth:
       type: http

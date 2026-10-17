@@ -144,6 +144,52 @@ paths:
                   $ref: '#/components/schemas/StatSnapshot'
 components:
   schemas:
+    Entity:
+      type: object
+      description: A managed entity in the Turbonomic environment
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the entity
+        displayName:
+          type: string
+          description: Human-readable name of the entity
+        className:
+          type: string
+          description: Entity type (e.g., VirtualMachine, Container, Application, PhysicalMachine)
+        environmentType:
+          type: string
+          description: Environment type (CLOUD, ON_PREM, HYBRID)
+          enum:
+          - CLOUD
+          - ON_PREM
+          - HYBRID
+        state:
+          type: string
+          description: Current operational state of the entity
+        severityBreakdown:
+          type: object
+          description: Summary of action severities for this entity
+        tags:
+          type: object
+          description: Key-value tags associated with the entity
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    EntityRef:
+      type: object
+      description: A reference to an entity
+      properties:
+        uuid:
+          type: string
+          description: Entity UUID
+        displayName:
+          type: string
+          description: Entity display name
+        className:
+          type: string
+          description: Entity type
     StatSnapshot:
       type: object
       description: A statistical snapshot for a resource metric
@@ -166,19 +212,6 @@ components:
               units:
                 type: string
                 description: Units for the value
-    EntityRef:
-      type: object
-      description: A reference to an entity
-      properties:
-        uuid:
-          type: string
-          description: Entity UUID
-        displayName:
-          type: string
-          description: Entity display name
-        className:
-          type: string
-          description: Entity type
     Action:
       type: object
       description: An optimization action recommended by Turbonomic
@@ -217,39 +250,6 @@ components:
         risk:
           type: object
           description: Risk assessment for this action
-    Entity:
-      type: object
-      description: A managed entity in the Turbonomic environment
-      properties:
-        uuid:
-          type: string
-          description: Unique identifier of the entity
-        displayName:
-          type: string
-          description: Human-readable name of the entity
-        className:
-          type: string
-          description: Entity type (e.g., VirtualMachine, Container, Application, PhysicalMachine)
-        environmentType:
-          type: string
-          description: Environment type (CLOUD, ON_PREM, HYBRID)
-          enum:
-          - CLOUD
-          - ON_PREM
-          - HYBRID
-        state:
-          type: string
-          description: Current operational state of the entity
-        severityBreakdown:
-          type: object
-          description: Summary of action severities for this entity
-        tags:
-          type: object
-          description: Key-value tags associated with the entity
-          additionalProperties:
-            type: array
-            items:
-              type: string
   securitySchemes:
     bearerAuth:
       type: http

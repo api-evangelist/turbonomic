@@ -132,6 +132,21 @@ paths:
           description: Policy deleted successfully
 components:
   schemas:
+    PolicyInput:
+      type: object
+      description: Input for creating or updating a policy
+      required:
+      - displayName
+      properties:
+        displayName:
+          type: string
+          description: Human-readable name of the policy
+        policyType:
+          type: string
+          description: Type of policy
+        enabled:
+          type: boolean
+          description: Whether the policy should be active
     Policy:
       type: object
       description: An automation or placement policy in Turbonomic
@@ -148,21 +163,6 @@ components:
         enabled:
           type: boolean
           description: Whether the policy is active
-    PolicyInput:
-      type: object
-      description: Input for creating or updating a policy
-      required:
-      - displayName
-      properties:
-        displayName:
-          type: string
-          description: Human-readable name of the policy
-        policyType:
-          type: string
-          description: Type of policy
-        enabled:
-          type: boolean
-          description: Whether the policy should be active
   securitySchemes:
     bearerAuth:
       type: http
